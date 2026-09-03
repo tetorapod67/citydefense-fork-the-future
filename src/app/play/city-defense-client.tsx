@@ -1,7 +1,7 @@
 /// <reference types="webmcp-types" />
 "use client";
 
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element -- Vinext rewrites fixed-width Next images through an optimizer that rejects these proof UI widths. Direct same-origin P0 assets are intentional. */
 import { Database, LogOut, RadioTower, RefreshCw, ShieldCheck } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -264,17 +264,17 @@ export function CityDefenseClient() {
 
           <div className="city-map" role="img" aria-label={`Central Ward with ${focus.stamp_count} confirmation stamps`}>
             <div className="map-grid" aria-hidden="true" />
-            <Image className="map-asset asset-office" src="/city-assets/commercial_office_blue.png" alt="Blue office block" width={120} height={120} priority unoptimized />
-            <Image className="map-asset asset-civic" src="/city-assets/civic_culture_center.png" alt="Civic culture center" width={120} height={120} priority unoptimized />
-            <Image className="map-asset asset-road" src="/city-assets/road_cross.png" alt="Central road junction" width={120} height={120} priority unoptimized />
-            <Image className="map-asset asset-tower" src="/city-assets/defense_watch_tower.png" alt="Defense watch tower" width={120} height={120} priority unoptimized />
+            <img className="map-asset asset-office" src="/assets/p0/buildings/com_market_hall.png" alt="Commercial market hall" width={128} height={128} />
+            <img className="map-asset asset-civic" src="/assets/p0/buildings/civ_town_hall.png" alt="Civic town hall" width={128} height={128} />
+            <img className="map-asset asset-road" src="/assets/p0/map/road_one_lane_local__m1111_nesw.png" alt="Central road junction" width={128} height={96} />
+            <img className="map-asset asset-tower" src="/assets/p0/buildings/def_sensor_mast.png" alt="Defense sensor tower" width={128} height={128} />
             <div className="district-label">
               <span>Central Ward</span>
               <small>Source district: CENTRAL</small>
             </div>
             {focus.stamp_count > 0 ? (
               <div className="stamp-marker" data-testid="stamp-marker">
-                <Image src="/city-assets/stamp_confirm.png" alt="Confirmation stamp" width={44} height={44} unoptimized />
+                <img src="/assets/p0/signals/stamp_confirm.png" alt="Confirmation stamp" width={44} height={44} />
                 <span>STAMP_CONFIRM</span>
               </div>
             ) : (
@@ -309,7 +309,7 @@ export function CityDefenseClient() {
             ) : context.data.activity.map((activity) => (
               <article className="activity-item" key={activity.event_id}>
                 <div className="activity-icon">
-                  <Image src="/city-assets/stamp_confirm.png" alt="" width={28} height={28} unoptimized />
+                  <img src="/assets/p0/signals/stamp_confirm.png" alt="" width={28} height={28} />
                 </div>
                 <div>
                   <div className="activity-title-row">
