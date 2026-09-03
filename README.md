@@ -118,7 +118,8 @@ Release qualification also includes a tracked-tree secret/privacy scan, migratio
 
 ## Security and limitations
 
-- Passwords are verified through deployment/local PBKDF2 verifier secrets; no public demo password or populated verifier is committed.
+- New and rotated verifier secrets use PBKDF2-SHA256; no password or verifier is committed.
+- A narrow legacy SHA-256 compatibility path exists only for the existing disposable `PLANNER-01` demo row and will be retired after its verifier is rotated.
 - Sessions use a hashed opaque token in an HttpOnly, SameSite=Lax cookie with a two-hour lifetime and `Secure` on HTTPS.
 - Tool requests are authenticated and branch-authorized on the server. Tool visibility alone is never treated as authorization.
 - The Gate 1 write is schema-constrained, rejects a mismatched `Origin` header when present, is Planner-only, is version-checked, and is idempotent by request ID.

@@ -198,6 +198,58 @@ const canonicalInput = {
   scope: "BRANCH_PUBLIC",
 } as const;
 
+async function pbkdf2Hash(password: string, salt: string): Promise<string> {
+  const key = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(password),
+    "PBKDF2",
+    false,
+    ["deriveBits"],
+  );
+  const hash = await crypto.subtle.deriveBits(
+    {
+      name: "PBKDF2",
+      hash: "SHA-256",
+      salt: Buffer.from(salt, "hex"),
+      iterations: 120_000,
+    },
+    key,
+    256,
+  );
+  return Buffer.from(hash).toString("hex");
+}
+
+async function sha256Hash(password: string): Promise<string> {
+  const hash = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(password));
+  return Buffer.from(hash).toString("hex");
+}
+
+function setSeatVerifier(
+  fake: FakeD1,
+  seatId: "OWNER" | "SENTINEL-01" | "PLANNER-01",
+  role: "OWNER" | "SENTINEL" | "PLANNER",
+  salt: string,
+  hash: string,
+): void {
+  fake.seat = {
+    seat_id: seatId,
+    account_id: ACCOUNT_ID,
+    role,
+    active_branch_id: BRANCH_ID,
+    password_salt: salt,
+    password_hash: hash,
+    enabled: 1,
+  };
+}
+
+function login(db: D1DatabaseLike, seatId: "OWNER" | "SENTINEL-01" | "PLANNER-01", password: string) {
+  return createSession(db, {
+    account_id: ACCOUNT_ID,
+    seat_id: seatId,
+    seat_password: password,
+  });
+}
+
 describe("Gate 1 bounded command service", () => {
   let fake: FakeD1;
   let db: D1DatabaseLike;
@@ -287,49 +339,97 @@ describe("Gate 1 bounded command service", () => {
     expect(SEEDED_SEAT_IDS).not.toContain("DISPATCHER-01");
   });
 
-  it("accepts a valid disposable login and rejects the wrong password", async () => {
+  it("accepts the correct canonical PBKDF2 password for Planner", async () => {
     const salt = "00112233445566778899aabbccddeeff";
     const password = "unit-correct-password";
-    const key = await crypto.subtle.importKey(
-      "raw",
-      new TextEncoder().encode(password),
-      "PBKDF2",
-      false,
-      ["deriveBits"],
-    );
-    const hash = await crypto.subtle.deriveBits(
-      { name: "PBKDF2", hash: "SHA-256", salt: Buffer.from(salt, "hex"), iterations: 120_000 },
-      key,
-      256,
-    );
-    fake.seat = {
-      seat_id: "PLANNER-01",
-      account_id: ACCOUNT_ID,
-      role: "PLANNER",
-      active_branch_id: BRANCH_ID,
-      password_salt: salt,
-      password_hash: Buffer.from(hash).toString("hex"),
-      enabled: 1,
-    };
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", salt, await pbkdf2Hash(password, salt));
 
-    const accepted = await createSession(db, {
-      account_id: ACCOUNT_ID,
-      seat_id: "PLANNER-01",
-      seat_password: password,
-    });
-    const rejected = await createSession(db, {
-      account_id: ACCOUNT_ID,
-      seat_id: "PLANNER-01",
-      seat_password: "unit-wrong-password",
-    });
+    const accepted = await login(db, "PLANNER-01", password);
     expect(accepted?.identity).toEqual(identity);
     expect(accepted?.token).toMatch(/^[0-9a-f]{64}$/);
-    expect(rejected).toBeNull();
 
     const authenticated = await authenticateRequest(db, new Request("https://example.test/api/session", {
       headers: { cookie: `${SESSION_COOKIE}=${accepted?.token}` },
     }));
     expect(authenticated).toEqual(identity);
+  });
+
+  it("rejects a wrong canonical PBKDF2 password for Planner", async () => {
+    const salt = "00112233445566778899aabbccddeeff";
+    const password = "unit-correct-password";
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", salt, await pbkdf2Hash(password, salt));
+
+    expect(await login(db, "PLANNER-01", "unit-wrong-password")).toBeNull();
+    expect(fake.sessions.size).toBe(0);
+  });
+
+  it("accepts the correct legacy SHA-256 password for the exact Planner seat", async () => {
+    const password = "unit-legacy-password";
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", "sha256", await sha256Hash(password));
+
+    const accepted = await login(db, "PLANNER-01", password);
+    expect(accepted?.identity).toEqual(identity);
+    expect(accepted?.token).toMatch(/^[0-9a-f]{64}$/);
+  });
+
+  it("rejects a wrong legacy SHA-256 password for Planner", async () => {
+    const password = "unit-legacy-password";
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", "sha256", await sha256Hash(password));
+
+    expect(await login(db, "PLANNER-01", "unit-wrong-password")).toBeNull();
+    expect(fake.sessions.size).toBe(0);
+  });
+
+  it("rejects a legacy SHA-256 verifier for Owner", async () => {
+    const password = "unit-legacy-password";
+    setSeatVerifier(fake, "OWNER", "OWNER", "sha256", await sha256Hash(password));
+
+    expect(await login(db, "OWNER", password)).toBeNull();
+    expect(fake.sessions.size).toBe(0);
+  });
+
+  it("rejects a legacy SHA-256 verifier for Sentinel", async () => {
+    const password = "unit-legacy-password";
+    setSeatVerifier(fake, "SENTINEL-01", "SENTINEL", "sha256", await sha256Hash(password));
+
+    expect(await login(db, "SENTINEL-01", password)).toBeNull();
+    expect(fake.sessions.size).toBe(0);
+  });
+
+  it("rejects a legacy SHA-256 verifier for an unknown seat", async () => {
+    const password = "unit-legacy-password";
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", "sha256", await sha256Hash(password));
+
+    expect(await createSession(db, {
+      account_id: ACCOUNT_ID,
+      seat_id: "UNKNOWN-SEAT",
+      seat_password: password,
+    })).toBeNull();
+    expect(fake.sessions.size).toBe(0);
+  });
+
+  it("rejects an inexact legacy marker or malformed hash without creating a session", async () => {
+    const password = "unit-legacy-password";
+
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", "SHA256", await sha256Hash(password));
+    expect(await login(db, "PLANNER-01", password)).toBeNull();
+
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", "sha256", "a".repeat(63));
+    expect(await login(db, "PLANNER-01", password)).toBeNull();
+    expect(fake.sessions.size).toBe(0);
+  });
+
+  it("rejects malformed canonical salt and hash without creating a session", async () => {
+    const password = "unit-correct-password";
+    const salt = "00112233445566778899aabbccddeeff";
+    const hash = await pbkdf2Hash(password, salt);
+
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", "g".repeat(32), hash);
+    expect(await login(db, "PLANNER-01", password)).toBeNull();
+
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", salt, "b".repeat(63));
+    expect(await login(db, "PLANNER-01", password)).toBeNull();
+    expect(fake.sessions.size).toBe(0);
   });
 
   it("does not expose secrets in read or write results", async () => {
