@@ -224,6 +224,10 @@ async function sha256Hash(password: string): Promise<string> {
   return Buffer.from(hash).toString("hex");
 }
 
+async function productionShapeHash(password: string): Promise<string> {
+  return `sha256:${await sha256Hash(password)}`;
+}
+
 function setSeatVerifier(
   fake: FakeD1,
   seatId: "OWNER" | "SENTINEL-01" | "PLANNER-01",
@@ -363,42 +367,47 @@ describe("Gate 1 bounded command service", () => {
     expect(fake.sessions.size).toBe(0);
   });
 
-  it("accepts the correct legacy SHA-256 password for the exact Planner seat", async () => {
-    const password = "unit-legacy-password";
-    setSeatVerifier(fake, "PLANNER-01", "PLANNER", "sha256", await sha256Hash(password));
+  it("accepts the correct production-shape SHA-256 password for the exact Planner seat", async () => {
+    const password = "unit-production-shape-password";
+    const salt = "102132435465768798a9bacbdcedfe0f";
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", salt, await productionShapeHash(password));
 
     const accepted = await login(db, "PLANNER-01", password);
     expect(accepted?.identity).toEqual(identity);
     expect(accepted?.token).toMatch(/^[0-9a-f]{64}$/);
   });
 
-  it("rejects a wrong legacy SHA-256 password for Planner", async () => {
-    const password = "unit-legacy-password";
-    setSeatVerifier(fake, "PLANNER-01", "PLANNER", "sha256", await sha256Hash(password));
+  it("rejects a wrong production-shape SHA-256 password for Planner", async () => {
+    const password = "unit-production-shape-password";
+    const salt = "102132435465768798a9bacbdcedfe0f";
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", salt, await productionShapeHash(password));
 
     expect(await login(db, "PLANNER-01", "unit-wrong-password")).toBeNull();
     expect(fake.sessions.size).toBe(0);
   });
 
-  it("rejects a legacy SHA-256 verifier for Owner", async () => {
-    const password = "unit-legacy-password";
-    setSeatVerifier(fake, "OWNER", "OWNER", "sha256", await sha256Hash(password));
+  it("rejects the production-shape SHA-256 verifier for Owner", async () => {
+    const password = "unit-production-shape-password";
+    const salt = "102132435465768798a9bacbdcedfe0f";
+    setSeatVerifier(fake, "OWNER", "OWNER", salt, await productionShapeHash(password));
 
     expect(await login(db, "OWNER", password)).toBeNull();
     expect(fake.sessions.size).toBe(0);
   });
 
-  it("rejects a legacy SHA-256 verifier for Sentinel", async () => {
-    const password = "unit-legacy-password";
-    setSeatVerifier(fake, "SENTINEL-01", "SENTINEL", "sha256", await sha256Hash(password));
+  it("rejects the production-shape SHA-256 verifier for Sentinel", async () => {
+    const password = "unit-production-shape-password";
+    const salt = "102132435465768798a9bacbdcedfe0f";
+    setSeatVerifier(fake, "SENTINEL-01", "SENTINEL", salt, await productionShapeHash(password));
 
     expect(await login(db, "SENTINEL-01", password)).toBeNull();
     expect(fake.sessions.size).toBe(0);
   });
 
-  it("rejects a legacy SHA-256 verifier for an unknown seat", async () => {
-    const password = "unit-legacy-password";
-    setSeatVerifier(fake, "PLANNER-01", "PLANNER", "sha256", await sha256Hash(password));
+  it("rejects the production-shape SHA-256 verifier for an unknown seat", async () => {
+    const password = "unit-production-shape-password";
+    const salt = "102132435465768798a9bacbdcedfe0f";
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", salt, await productionShapeHash(password));
 
     expect(await createSession(db, {
       account_id: ACCOUNT_ID,
@@ -408,34 +417,91 @@ describe("Gate 1 bounded command service", () => {
     expect(fake.sessions.size).toBe(0);
   });
 
-  it("rejects an inexact legacy marker or malformed hash without creating a session", async () => {
-    const password = "unit-legacy-password";
+  it("rejects an uppercase production-shape SHA-256 prefix", async () => {
+    const password = "unit-production-shape-password";
+    const salt = "102132435465768798a9bacbdcedfe0f";
+    const digest = await sha256Hash(password);
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", salt, `SHA256:${digest}`);
 
-    setSeatVerifier(fake, "PLANNER-01", "PLANNER", "SHA256", await sha256Hash(password));
-    expect(await login(db, "PLANNER-01", password)).toBeNull();
-
-    setSeatVerifier(fake, "PLANNER-01", "PLANNER", "sha256", "a".repeat(63));
-    expect(await login(db, "PLANNER-01", password)).toBeNull();
-    expect(fake.sessions.size).toBe(0);
-  });
-
-  it("rejects malformed canonical salt and hash without creating a session", async () => {
-    const password = "unit-correct-password";
-    const salt = "00112233445566778899aabbccddeeff";
-    const hash = await pbkdf2Hash(password, salt);
-
-    setSeatVerifier(fake, "PLANNER-01", "PLANNER", "g".repeat(32), hash);
-    expect(await login(db, "PLANNER-01", password)).toBeNull();
-
-    setSeatVerifier(fake, "PLANNER-01", "PLANNER", salt, "b".repeat(63));
     expect(await login(db, "PLANNER-01", password)).toBeNull();
     expect(fake.sessions.size).toBe(0);
   });
 
-  it("does not expose secrets in read or write results", async () => {
+  it("rejects a hyphenated production-shape SHA-256 prefix", async () => {
+    const password = "unit-production-shape-password";
+    const salt = "102132435465768798a9bacbdcedfe0f";
+    const digest = await sha256Hash(password);
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", salt, `sha-256:${digest}`);
+
+    expect(await login(db, "PLANNER-01", password)).toBeNull();
+    expect(fake.sessions.size).toBe(0);
+  });
+
+  it("rejects a production-shape SHA-256 digest with 63 hex characters", async () => {
+    const password = "unit-production-shape-password";
+    const salt = "102132435465768798a9bacbdcedfe0f";
+    const digest = await sha256Hash(password);
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", salt, `sha256:${digest.slice(0, -1)}`);
+
+    expect(await login(db, "PLANNER-01", password)).toBeNull();
+    expect(fake.sessions.size).toBe(0);
+  });
+
+  it("rejects a production-shape SHA-256 digest with 65 hex characters", async () => {
+    const password = "unit-production-shape-password";
+    const salt = "102132435465768798a9bacbdcedfe0f";
+    const digest = await sha256Hash(password);
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", salt, `sha256:${digest}0`);
+
+    expect(await login(db, "PLANNER-01", password)).toBeNull();
+    expect(fake.sessions.size).toBe(0);
+  });
+
+  it("rejects a production-shape SHA-256 digest containing non-hex characters", async () => {
+    const password = "unit-production-shape-password";
+    const salt = "102132435465768798a9bacbdcedfe0f";
+    const digest = await sha256Hash(password);
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", salt, `sha256:${digest.slice(0, -1)}g`);
+
+    expect(await login(db, "PLANNER-01", password)).toBeNull();
+    expect(fake.sessions.size).toBe(0);
+  });
+
+  it("rejects the production-shape SHA-256 verifier with an invalid salt", async () => {
+    const password = "unit-production-shape-password";
+    setSeatVerifier(
+      fake,
+      "PLANNER-01",
+      "PLANNER",
+      "g".repeat(32),
+      await productionShapeHash(password),
+    );
+
+    expect(await login(db, "PLANNER-01", password)).toBeNull();
+    expect(fake.sessions.size).toBe(0);
+  });
+
+  it("rejects the first hotfix's guessed marker-and-bare-hash shape", async () => {
+    const password = "unit-production-shape-password";
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", "sha256", await sha256Hash(password));
+
+    expect(await login(db, "PLANNER-01", password)).toBeNull();
+    expect(fake.sessions.size).toBe(0);
+  });
+
+  it("does not expose password verifier inputs in authentication, read, or write results", async () => {
+    const password = "unit-production-shape-password";
+    const salt = "102132435465768798a9bacbdcedfe0f";
+    const storedHash = await productionShapeHash(password);
+    setSeatVerifier(fake, "PLANNER-01", "PLANNER", salt, storedHash);
+
+    const authentication = await login(db, "PLANNER-01", password);
     const read = await readCityContext(db, identity);
     const write = await placeCanonicalStamp(db, identity, canonicalInput);
-    const serialized = JSON.stringify({ read, write });
-    expect(serialized).not.toMatch(/password|token_hash|session|salt/i);
+    const serialized = JSON.stringify({ authentication, read, write });
+    expect(serialized).not.toContain(password);
+    expect(serialized).not.toContain(salt);
+    expect(serialized).not.toContain(storedHash);
+    expect(serialized).not.toMatch(/password_(?:salt|hash)|seat_password/i);
   });
 });
