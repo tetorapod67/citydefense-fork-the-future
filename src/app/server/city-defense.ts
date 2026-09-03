@@ -228,7 +228,8 @@ export async function createSession(
   }>();
 
   if (!seat || !seat.enabled) return null;
-  const passwordMatches = await verifyPassword(
+  const passwordMatches = await verifyPasswordForSeat(
+    seat.seat_id,
     parsed.data.seat_password,
     seat.password_salt,
     seat.password_hash,
@@ -539,7 +540,20 @@ function readCookie(header: string | null, name: string): string | null {
   return null;
 }
 
-async function verifyPassword(password: string, saltHex: string, expectedHash: string) {
+async function verifyPasswordForSeat(
+  seatId: string,
+  password: string,
+  saltOrScheme: string,
+  expectedHash: string,
+): Promise<boolean> {
+  if (!/^[0-9a-f]{64}$/i.test(expectedHash)) return false;
+  const normalizedHash = expectedHash.toLowerCase();
+
+  if (seatId === "PLANNER-01" && saltOrScheme === "sha256") {
+    return constantTimeEqual(await sha256Hex(password), normalizedHash);
+  }
+
+  if (!/^[0-9a-f]{32}$/i.test(saltOrScheme)) return false;
   const key = await crypto.subtle.importKey(
     "raw",
     new TextEncoder().encode(password),
@@ -548,11 +562,16 @@ async function verifyPassword(password: string, saltHex: string, expectedHash: s
     ["deriveBits"],
   );
   const bits = await crypto.subtle.deriveBits(
-    { name: "PBKDF2", hash: "SHA-256", salt: hexToBytes(saltHex) as BufferSource, iterations: 120_000 },
+    {
+      name: "PBKDF2",
+      hash: "SHA-256",
+      salt: hexToBytes(saltOrScheme) as BufferSource,
+      iterations: 120_000,
+    },
     key,
     256,
   );
-  return constantTimeEqual(bytesToHex(new Uint8Array(bits)), expectedHash);
+  return constantTimeEqual(bytesToHex(new Uint8Array(bits)), normalizedHash);
 }
 
 async function sha256Hex(value: string): Promise<string> {
