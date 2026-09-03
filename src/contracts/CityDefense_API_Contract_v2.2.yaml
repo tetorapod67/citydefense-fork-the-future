@@ -1,0 +1,547 @@
+openapi: 3.1.0
+info:
+  title: 'CityDefense: Fork the Future API'
+  version: '2.2'
+  description: Normative route inventory for the WebMCP hackathon submission. Schemas are intentionally compact; implementation must import shared TypeScript/Zod domain contracts rather than hand-maintaining divergent route shapes.
+  x-citydefense-gate0:
+    scopeStatus: GATE0_SCOPE_FROZEN
+    crisisAllowlist:
+    - CRISIS_SUBSTATION_ARC_FIRE
+    - CRISIS_AVALANCHE
+    runtimeSeatRoles:
+    - OWNER
+    - SENTINEL
+    - PLANNER
+    agentSeatIds:
+    - SENTINEL-01
+    - PLANNER-01
+    dispatcherPolicy: MERGED_INTO_PLANNER_RESPONDER
+    gate1Started: false
+    toolRenameOrConsolidationDeferredToGate2: true
+servers:
+- url: https://REPLACE_WITH_PRODUCTION_HOST
+security:
+- sessionCookie: []
+paths:
+  /api/auth/login:
+    post:
+      security: []
+      summary: Authenticate Account ID, Seat ID, and Seat-specific password.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+              - account_id
+              - seat_id
+              - password
+              properties:
+                account_id:
+                  type: string
+                  minLength: 1
+                  maxLength: 80
+                seat_id:
+                  type: string
+                  minLength: 1
+                  maxLength: 80
+                  examples:
+                  - OWNER
+                  - SENTINEL-01
+                  - PLANNER-01
+                password:
+                  type: string
+                  minLength: 8
+                  maxLength: 256
+      responses:
+        '200':
+          description: Authenticated Seat and current Branch context.
+        '401':
+          description: Generic invalid credentials response.
+  /api/auth/logout:
+    post:
+      summary: Revoke the active Session.
+      responses:
+        '204':
+          description: Logged out.
+      x-p0-authorized-roles: &id001
+      - OWNER
+      - SENTINEL
+      - PLANNER
+  /api/session:
+    get:
+      summary: Return current Seat, role, assignments, and active Branch.
+      responses:
+        '200':
+          description: Session context.
+        '401':
+          description: Not authenticated.
+      x-p0-authorized-roles: *id001
+  /api/branches/{branchId}/advance:
+    post:
+      summary: Materialize due deterministic simulation milestones.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      responses:
+        '200':
+          description: Current Branch version and any generated events.
+      x-p0-authorized-roles: *id001
+  /api/branches/{branchId}/context:
+    get:
+      summary: Compact authenticated Seat continuation context.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      - name: detail
+        in: query
+        schema:
+          type: string
+          enum:
+          - SUMMARY
+          - OPERATIONAL
+          - FULL_VISIBLE
+      - name: include_unresolved_stamps
+        in: query
+        schema:
+          type: boolean
+      - name: include_assigned_units
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: ToolResult wrapping City context.
+      x-p0-authorized-roles: *id001
+  /api/branches/{branchId}/objects/{targetRef}:
+    get:
+      summary: Inspect one stable visible reference.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      - name: targetRef
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: nearbyRadius
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+          maximum: 3
+      - name: historyLimit
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+          maximum: 12
+      responses:
+        '200':
+          description: Visible object DTO and related activity.
+        '403':
+          description: Reference is not visible to the Seat.
+        '404':
+          description: Reference does not exist in Branch context.
+      x-p0-authorized-roles: *id001
+  /api/branches/{branchId}/activity:
+    get:
+      summary: Chronological chat-like action and StampGraph feed.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          enum:
+          - ALL
+          - OWNER
+          - SENTINEL
+          - PLANNER
+          - SYSTEM
+      - name: actor
+        in: query
+        schema:
+          type: string
+      - name: kind
+        in: query
+        schema:
+          type: string
+      - name: target_ref
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 30
+      responses:
+        '200':
+          description: Compact Activity records and next cursor.
+      x-p0-authorized-roles: *id001
+  /api/stamps/catalog/search:
+    get:
+      summary: Search canonical stamp vocabulary.
+      parameters:
+      - name: semantic_query
+        in: query
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 160
+      - name: category
+        in: query
+        schema:
+          type: string
+      - name: target_kind
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 12
+      responses:
+        '200':
+          description: Canonical stamp IDs and constraints.
+      x-p0-authorized-roles: *id001
+  /api/branches/{branchId}/stamps/{stampId}/thread:
+    get:
+      summary: Retrieve one stamp reply tree and relation subgraph.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      - name: stampId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: depth
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 4
+      - name: maxItems
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 40
+      responses:
+        '200':
+          description: Stamp thread and typed relations.
+      x-p0-authorized-roles: *id001
+  /api/branches/{branchId}/signals:
+    get:
+      summary: Sentinel-only machine-readable precursor telemetry.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      - name: since_cursor
+        in: query
+        schema:
+          type: string
+      - name: minimum_strength
+        in: query
+        schema:
+          type: number
+          minimum: 0
+          maximum: 1
+      - name: include_previously_seen
+        in: query
+        schema:
+          type: boolean
+      - name: limit
+        in: query
+        required: true
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 12
+      responses:
+        '200':
+          description: Authorized signal DTOs and cursor.
+        '403':
+          description: Role is not Sentinel.
+      x-p0-authorized-roles:
+      - SENTINEL
+  /api/branches/{branchId}/commands/build-city-asset:
+    post:
+      summary: Build rail, station, road, building, or land asset.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      requestBody:
+        $ref: '#/components/requestBodies/WriteCommand'
+      responses:
+        '200':
+          description: Accepted event and new Branch version.
+      x-p0-authorized-roles:
+      - OWNER
+      - PLANNER
+  /api/branches/{branchId}/commands/construct-defense-facility:
+    post:
+      summary: Construct one fixed defense facility.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      requestBody:
+        $ref: '#/components/requestBodies/WriteCommand'
+      responses:
+        '200':
+          description: Accepted event and new Branch version.
+      x-p0-authorized-roles:
+      - OWNER
+      - PLANNER
+  /api/branches/{branchId}/commands/purchase-mobile-unit:
+    post:
+      summary: Purchase one unit into a compatible facility.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      requestBody:
+        $ref: '#/components/requestBodies/WriteCommand'
+      responses:
+        '200':
+          description: Accepted event and unit ID.
+      x-p0-authorized-roles:
+      - OWNER
+      - PLANNER
+  /api/branches/{branchId}/commands/dispatch-mobile-unit:
+    post:
+      summary: Dispatch a ready mobile unit on an allowlisted mission.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      requestBody:
+        $ref: '#/components/requestBodies/WriteCommand'
+      responses:
+        '200':
+          description: Accepted event
+          route: null
+          and ETA.: null
+      x-p0-authorized-roles:
+      - OWNER
+      - PLANNER
+  /api/branches/{branchId}/commands/set-transport-service:
+    post:
+      summary: Set bounded service and emergency-priority policy.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      requestBody:
+        $ref: '#/components/requestBodies/WriteCommand'
+      responses:
+        '200':
+          description: Accepted event.
+      x-p0-authorized-roles:
+      - OWNER
+      - PLANNER
+  /api/branches/{branchId}/commands/set-evacuation-order:
+    post:
+      summary: Prepare, activate, or cancel district evacuation.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      requestBody:
+        $ref: '#/components/requestBodies/WriteCommand'
+      responses:
+        '200':
+          description: Accepted event.
+      x-p0-authorized-roles:
+      - OWNER
+      - SENTINEL
+      - PLANNER
+      x-sentinel-mode-constraint: PREPARE_ONLY
+  /api/branches/{branchId}/commands/place-stamp-bundle:
+    post:
+      summary: Place canonical semantic core stamp and bounded modifiers.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      requestBody:
+        $ref: '#/components/requestBodies/WriteCommand'
+      responses:
+        '200':
+          description: Accepted event and Stamp ID.
+      x-p0-authorized-roles: *id001
+  /api/branches/{branchId}/commands/connect-graph-items:
+    post:
+      summary: Create one typed first-class relation.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      requestBody:
+        $ref: '#/components/requestBodies/WriteCommand'
+      responses:
+        '200':
+          description: Accepted event and Relation ID.
+      x-p0-authorized-roles: *id001
+  /api/branches/{branchId}/replay/events:
+    get:
+      summary: Paginated Branch event index for Replay.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      responses:
+        '200':
+          description: Event index.
+      x-p0-authorized-roles: *id001
+  /api/branches/{branchId}/replay/state/{version}:
+    get:
+      summary: Retrieve stored state-after snapshot at Branch version.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: integer
+          minimum: 0
+      responses:
+        '200':
+          description: Historical BranchState.
+      x-p0-authorized-roles: *id001
+  /api/branches/{branchId}/replay/access-traces:
+    get:
+      summary: Owner-only P0 access traces for selected window. Observer is FUTURE_OPTIONAL.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      - name: from_version
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+      - name: to_version
+        in: query
+        schema:
+          type: integer
+          minimum: 0
+      responses:
+        '200':
+          description: Authorized traces.
+      x-p0-authorized-roles:
+      - OWNER
+  /api/owner/branches/fork:
+    post:
+      summary: Owner-only non-destructive Branch creation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+              - request_id
+              - source_branch_id
+              - source_event_id
+              - boundary
+              - new_branch_name
+              - continuation_mode
+              - move_seat_ids
+              properties:
+                request_id:
+                  type: string
+                source_branch_id:
+                  type: string
+                source_event_id:
+                  type: string
+                boundary:
+                  type: string
+                  enum:
+                  - BEFORE
+                  - AFTER
+                new_branch_name:
+                  type: string
+                  minLength: 1
+                  maxLength: 80
+                continuation_mode:
+                  type: string
+                  enum:
+                  - OWNER_TAKEOVER
+                  - CONTINUE_TOGETHER
+                move_seat_ids:
+                  type: array
+                  uniqueItems: true
+                  maxItems: 12
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: New paused Branch and preview.
+        '403':
+          description: Owner authority required.
+      x-p0-authorized-roles:
+      - OWNER
+  /api/owner/branches/{branchId}/activate:
+    post:
+      summary: Pause current Branch and activate selected Branch atomically.
+      parameters:
+      - $ref: '#/components/parameters/BranchId'
+      responses:
+        '200':
+          description: New active Branch context.
+      x-p0-authorized-roles:
+      - OWNER
+  /api/owner/demo/reset:
+    post:
+      summary: Reset disposable demo environment to canonical seed.
+      responses:
+        '200':
+          description: New demo Town or reseeded disposable state.
+      x-p0-authorized-roles:
+      - OWNER
+components:
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: citydefense_session
+  parameters:
+    BranchId:
+      name: branchId
+      in: path
+      required: true
+      schema:
+        type: string
+        minLength: 3
+        maxLength: 120
+  requestBodies:
+    WriteCommand:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - request_id
+            - expected_branch_version
+            properties:
+              request_id:
+                type: string
+                minLength: 12
+                maxLength: 120
+              expected_branch_version:
+                type: integer
+                minimum: 0
+            additionalProperties: true
+  schemas:
+    P0RuntimeSeatRole:
+      type: string
+      enum:
+      - OWNER
+      - SENTINEL
+      - PLANNER
+    P0RuntimeSeatId:
+      type: string
+      enum:
+      - OWNER
+      - SENTINEL-01
+      - PLANNER-01
