@@ -1,0 +1,2313 @@
+{
+  "format": "CityDefenseP0Provenance/1.0",
+  "generated_at": "2026-09-04T01:28:03+09:00",
+  "provenance_status": "PASS_WITH_DECLARED_LICENSE_NOTE",
+  "selection_status": "P0_REVIEW_ACCEPTED",
+  "required_asset_count": 50,
+  "accepted_asset_count": 50,
+  "missing_asset_ids": [],
+  "normalization_profile": "CityDefenseP0Normalize/1.0",
+  "dimension_profile": {
+    "map": "128x96",
+    "buildings": "128x128 except station 128x96",
+    "units": "128x128",
+    "crisis": "96x96",
+    "signals": "64x64",
+    "basis": "v2.2-compatible P0 in-game sprite cells"
+  },
+  "source_priority_results": [
+    {
+      "priority": 1,
+      "source": "CityDefense_P0_Judged_Asset_Drop_v1.0.zip",
+      "status": "NOT_FOUND_IN_AVAILABLE_IMAGEGEN_WORK_OR_LOCAL_DOWNLOADS",
+      "used": false
+    },
+    {
+      "priority": 2,
+      "source": "CityDefense_Implementation_Pack_v2.2_GATE0_SCOPE_FROZEN.zip",
+      "sha256": "fc2bb1375dfbf2afada5ca813dc099b0822a158c19b20413ef4f8f64e84e1384",
+      "status": "USED_AFTER_CURRENT_P0_SUBJECT_AND_SIZE_REVIEW",
+      "used": true
+    },
+    {
+      "priority": 2,
+      "source": "CityDefense_Implementation_Pack_v2.1_FULL.zip",
+      "sha256": "e2453851877f047876101ba3be655d9eab9dbf1d358496d581fadec5d8c2a9cb",
+      "status": "NOT_USED; INDIVIDUAL_PNGS_BYTE_IDENTICAL_TO_V2.2",
+      "used": false
+    },
+    {
+      "priority": 3,
+      "source": "Accepted Checkpoint",
+      "status": "NOT_FOUND_IN_AVAILABLE_IMAGEGEN_WORK",
+      "used": false
+    },
+    {
+      "priority": 4,
+      "source": "Codex built-in image generation",
+      "status": "USED_FOR_33_MISSING_OR_REJECTED_ASSETS_IN_SMALL_CATEGORY_SHEETS",
+      "used": true
+    }
+  ],
+  "generated_source_sheets": [
+    {
+      "id": "buildings-supplement.png",
+      "sha256": "bc928542aa205271e2952d9435274fd9cfca8d3c4bc45b1f997879138b2562cc",
+      "shipping_status": "NOT_COMMITTED_RAW_SOURCE",
+      "input_mode": "RGB",
+      "normalization_note": "Built-in output contained a baked neutral checker matte; only deterministic fixed-cell slices with verified alpha were promoted."
+    },
+    {
+      "id": "crisis-supplement.png",
+      "sha256": "b7264cd575767e51333f79f9ce6f053f1ea657704439a0f5734a375e83bfaa64",
+      "shipping_status": "NOT_COMMITTED_RAW_SOURCE",
+      "input_mode": "RGB",
+      "normalization_note": "Built-in output contained a baked neutral checker matte; only deterministic fixed-cell slices with verified alpha were promoted."
+    },
+    {
+      "id": "map-supplement.png",
+      "sha256": "b9782f10b255678395bd3f5b34948a559daf89646a1295451299257017d64523",
+      "shipping_status": "NOT_COMMITTED_RAW_SOURCE",
+      "input_mode": "RGB",
+      "normalization_note": "Built-in output contained a baked neutral checker matte; only deterministic fixed-cell slices with verified alpha were promoted."
+    },
+    {
+      "id": "signals-supplement.png",
+      "sha256": "cb21b7f38348eb9295481e8c72c18f41e145c2efef4ff39c0d3d6541d107d5a4",
+      "shipping_status": "NOT_COMMITTED_RAW_SOURCE",
+      "input_mode": "RGB",
+      "normalization_note": "Built-in output contained a baked neutral checker matte; only deterministic fixed-cell slices with verified alpha were promoted."
+    },
+    {
+      "id": "units-supplement-v2.png",
+      "sha256": "215da1e2ec893a1423f5295abba5caecb8ba983be2256fec796cb9e9a2417155",
+      "shipping_status": "NOT_COMMITTED_RAW_SOURCE",
+      "input_mode": "RGB",
+      "normalization_note": "Built-in output contained a baked neutral checker matte; only deterministic fixed-cell slices with verified alpha were promoted."
+    },
+    {
+      "id": "visual-gate-replacements.png",
+      "sha256": "23d5397aef0d063517bc6b1f514bbf16ace08dd5b58504d386d708831753bfb4",
+      "shipping_status": "NOT_COMMITTED_RAW_SOURCE",
+      "input_mode": "RGB",
+      "normalization_note": "Built-in output used a flat chroma-magenta matte; only deterministic fixed-cell slices with verified alpha were promoted."
+    }
+  ],
+  "style_locks": [
+    {
+      "id": "buildings-style-lock.png",
+      "sha256": "b43b2b0cf7a0c7b6dc9c959b75f75464d30bbae31f891ca3278485748f521623",
+      "role": "project-owned style-only reference; not shipped"
+    },
+    {
+      "id": "crisis-style-lock.png",
+      "sha256": "f41959a077fc6d5cc3777a39a0d808cd98566c2c293466c937947513c60882fc",
+      "role": "project-owned style-only reference; not shipped"
+    },
+    {
+      "id": "map-style-lock.png",
+      "sha256": "b41a815e3e3cd096b1a6fd2c0f7a79f0db3b385f0e784aef64c7c7682bcd5555",
+      "role": "project-owned style-only reference; not shipped"
+    },
+    {
+      "id": "signals-style-lock.png",
+      "sha256": "a96aeeb824010108ae3ae6498ca82e9bf591525f9aa7ffcb77fd6d4c8aca7d7b",
+      "role": "project-owned style-only reference; not shipped"
+    },
+    {
+      "id": "units-style-lock.png",
+      "sha256": "624f1eba6162be17f76210ce8e028e8a8defdca13f85b26d7d87bc7b1c5400c1",
+      "role": "project-owned style-only reference; not shipped"
+    }
+  ],
+  "rights_and_license": {
+    "third_party_reference_images_used_as_public_assets": false,
+    "third_party_reference_images_transformed_or_cropped": false,
+    "repository_license": "MIT",
+    "publication_authority": "Owner-directed integration request in this task",
+    "source_pack_per_asset_license_file": "ABSENT",
+    "status": "PASS_WITH_NOTE",
+    "note": "No conflicting license marker was found. The implementation packs do not contain a separate per-asset license file; publication relies on the owner's explicit request and the repository MIT license context."
+  },
+  "exclusions": [
+    "assets/references/**",
+    "assets/concepts/**",
+    "assets/source_generated/**",
+    "assets/sheets/**",
+    "all raw local image-generation sheets"
+  ],
+  "assets": [
+    {
+      "asset_id": "TILE_BASE_GRASS_TEMPERATE__M0000_NONE",
+      "label": "Grass / base",
+      "category": "map",
+      "repository_file": "public/assets/p0/map/tile_base_grass_temperate__m0000_none.png",
+      "public_file": "/assets/p0/map/tile_base_grass_temperate__m0000_none.png",
+      "width": 128,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "f862e613880719f9a2be2e7359b7527f38714d4cd8164697d29f116ff58950d2",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "v2.2_pack_individual",
+      "source_path": "assets/individual/terrain/terrain_grass_diamond.png",
+      "source_sha256": "e372b07bb9d8d0400a78239a448e0b262f110fad6d17650ede163e4c61e3b877",
+      "source_width": 128,
+      "source_height": 96,
+      "slot_index": 0,
+      "normalization": "alpha-trim, nearest-neighbor scale, anchor alignment"
+    },
+    {
+      "asset_id": "TILE_BASE_MOUNTAIN__M0000_NONE",
+      "label": "Mountain",
+      "category": "map",
+      "repository_file": "public/assets/p0/map/tile_base_mountain__m0000_none.png",
+      "public_file": "/assets/p0/map/tile_base_mountain__m0000_none.png",
+      "width": 128,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "c5e3b8804100d398e6a58b87d9fa352aa289b55563c96158770cfa07c6cf36ef",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "v2.2_pack_individual",
+      "source_path": "assets/individual/terrain/terrain_mountain.png",
+      "source_sha256": "cf65638752568e0de939b174ac412dc4320996920d7c0be54044e84c1609bd8f",
+      "source_width": 128,
+      "source_height": 96,
+      "slot_index": 0,
+      "normalization": "alpha-trim, nearest-neighbor scale, anchor alignment"
+    },
+    {
+      "asset_id": "LAND_CUT_SLOPE__M0000_NONE",
+      "label": "Slope",
+      "category": "map",
+      "repository_file": "public/assets/p0/map/land_cut_slope__m0000_none.png",
+      "public_file": "/assets/p0/map/land_cut_slope__m0000_none.png",
+      "width": 128,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "1b94c9bfe4e8046ae92276f5249043d92943f75f13b10e5d9ceba19749eae380",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "v2.2_pack_individual",
+      "source_path": "assets/individual/terrain/terrain_grass_cliff.png",
+      "source_sha256": "59e11762a7ca2bb35c7c97e578e9fe197297d0ef06bae6cb0b9286d58974d57a",
+      "source_width": 128,
+      "source_height": 96,
+      "slot_index": 0,
+      "normalization": "alpha-trim, nearest-neighbor scale, anchor alignment"
+    },
+    {
+      "asset_id": "ROAD_ONE_LANE_LOCAL__M0101_EW",
+      "label": "Road straight",
+      "category": "map",
+      "repository_file": "public/assets/p0/map/road_one_lane_local__m0101_ew.png",
+      "public_file": "/assets/p0/map/road_one_lane_local__m0101_ew.png",
+      "width": 128,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "d57fcf3a789f51a019aa49253cf1e526c65558b236d26890fb5726185b38291f",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "v2.2_pack_individual",
+      "source_path": "assets/individual/terrain/road_straight.png",
+      "source_sha256": "0ed777bfc7c46b2d4e7c7d99c5c21c0bc3bf5154956c1641833cd854d39af951",
+      "source_width": 128,
+      "source_height": 96,
+      "slot_index": 0,
+      "normalization": "alpha-trim, nearest-neighbor scale, anchor alignment"
+    },
+    {
+      "asset_id": "ROAD_ONE_LANE_LOCAL__CORNER",
+      "label": "Road corner",
+      "category": "map",
+      "repository_file": "public/assets/p0/map/road_one_lane_local__corner.png",
+      "public_file": "/assets/p0/map/road_one_lane_local__corner.png",
+      "width": 128,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "f2cd4b6245697bd973f54afb6c94209e53f53289b91229b5a486db7db25d775c",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "map-supplement.png",
+      "source_sheet_sha256": "b9782f10b255678395bd3f5b34948a559daf89646a1295451299257017d64523",
+      "source_sheet_width": 1536,
+      "source_sheet_height": 1024,
+      "slot_index": 0,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        0,
+        0,
+        405,
+        512
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 405,
+        "source_cell_height": 512,
+        "crop_box": [
+          106,
+          267,
+          405,
+          443
+        ],
+        "removed_background_pixels": 174414,
+        "removed_background_fraction": 0.841117,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "ROAD_ONE_LANE_LOCAL__T_JUNCTION",
+      "label": "Road T",
+      "category": "map",
+      "repository_file": "public/assets/p0/map/road_one_lane_local__t_junction.png",
+      "public_file": "/assets/p0/map/road_one_lane_local__t_junction.png",
+      "width": 128,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "faf7978462fbb492c1a746d96009fc541b74384786f4fa76632baf65ec1c5b77",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "map-supplement.png",
+      "source_sheet_sha256": "b9782f10b255678395bd3f5b34948a559daf89646a1295451299257017d64523",
+      "source_sheet_width": 1536,
+      "source_sheet_height": 1024,
+      "slot_index": 1,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        405,
+        0,
+        772,
+        512
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 367,
+        "source_cell_height": 512,
+        "crop_box": [
+          58,
+          276,
+          367,
+          461
+        ],
+        "removed_background_pixels": 150896,
+        "removed_background_fraction": 0.803048,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "ROAD_ONE_LANE_LOCAL__M1111_NESW",
+      "label": "Road cross",
+      "category": "map",
+      "repository_file": "public/assets/p0/map/road_one_lane_local__m1111_nesw.png",
+      "public_file": "/assets/p0/map/road_one_lane_local__m1111_nesw.png",
+      "width": 128,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "35d8a806828257e27a2c9e4000d67df889939bc2f64d3c6fccc8b2f0d61887b9",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "v2.2_pack_individual",
+      "source_path": "assets/individual/terrain/road_cross.png",
+      "source_sha256": "85ba283d9316693ba1b32501a946931e2f0dde7d5a1e47c39ec73e3a479cc808",
+      "source_width": 128,
+      "source_height": 96,
+      "slot_index": 0,
+      "normalization": "alpha-trim, nearest-neighbor scale, anchor alignment"
+    },
+    {
+      "asset_id": "TRACK_GROUND_SINGLE__M0101_EW",
+      "label": "Rail straight",
+      "category": "map",
+      "repository_file": "public/assets/p0/map/track_ground_single__m0101_ew.png",
+      "public_file": "/assets/p0/map/track_ground_single__m0101_ew.png",
+      "width": 128,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "97c6acb3c9fea92b20998de7690ef8856d4084039cd973a3bcf5f844b52b82e4",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "map-supplement.png",
+      "source_sheet_sha256": "b9782f10b255678395bd3f5b34948a559daf89646a1295451299257017d64523",
+      "source_sheet_width": 1536,
+      "source_sheet_height": 1024,
+      "slot_index": 2,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        772,
+        0,
+        1143,
+        512
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 371,
+        "source_cell_height": 512,
+        "crop_box": [
+          61,
+          281,
+          310,
+          455
+        ],
+        "removed_background_pixels": 170987,
+        "removed_background_fraction": 0.900159,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "TRACK_CURVE__90_DEGREE",
+      "label": "Rail curve",
+      "category": "map",
+      "repository_file": "public/assets/p0/map/track_curve__90_degree.png",
+      "public_file": "/assets/p0/map/track_curve__90_degree.png",
+      "width": 128,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "f3a8c730e70755741209791d5eda3cc01c0eae22a32fed74dae42f0d4a3fb074",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "visual-gate-replacements.png",
+      "source_sheet_sha256": "23d5397aef0d063517bc6b1f514bbf16ace08dd5b58504d386d708831753bfb4",
+      "source_sheet_width": 1536,
+      "source_sheet_height": 1024,
+      "slot_index": 2,
+      "grid": {
+        "columns": 3,
+        "rows": 1
+      },
+      "adaptive_cell_box": [
+        1005,
+        0,
+        1536,
+        1024
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment, generated plan-view curve mapped to 2:1 isometric plane",
+      "extraction": {
+        "source_cell_width": 531,
+        "source_cell_height": 1024,
+        "crop_box": [
+          0,
+          365,
+          456,
+          690
+        ],
+        "removed_background_pixels": 472371,
+        "removed_background_fraction": 0.868738,
+        "background_mode": "flat_chroma_magenta",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "TILE_OVERLAY_SELECTION__1X1",
+      "label": "Selection overlay",
+      "category": "map",
+      "repository_file": "public/assets/p0/map/tile_overlay_selection__1x1.png",
+      "public_file": "/assets/p0/map/tile_overlay_selection__1x1.png",
+      "width": 128,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "65b809e39f3bbce6e3c0949d44df9d48f38cf2440766b186082e26d492ace268",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "map-supplement.png",
+      "source_sheet_sha256": "b9782f10b255678395bd3f5b34948a559daf89646a1295451299257017d64523",
+      "source_sheet_width": 1536,
+      "source_sheet_height": 1024,
+      "slot_index": 3,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        1143,
+        0,
+        1536,
+        512
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 393,
+        "source_cell_height": 512,
+        "crop_box": [
+          0,
+          258,
+          301,
+          455
+        ],
+        "removed_background_pixels": 186280,
+        "removed_background_fraction": 0.925771,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": true,
+        "enclosed_checker_components_removed": 1,
+        "enclosed_checker_pixels_removed": 15056
+      }
+    },
+    {
+      "asset_id": "TILE_OVERLAY_HOVER__1X1",
+      "label": "Hover overlay",
+      "category": "map",
+      "repository_file": "public/assets/p0/map/tile_overlay_hover__1x1.png",
+      "public_file": "/assets/p0/map/tile_overlay_hover__1x1.png",
+      "width": 128,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "fff57356a48c5b12590d4016c0ba150939d503e5736ea9523223fc43b206469d",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "map-supplement.png",
+      "source_sheet_sha256": "b9782f10b255678395bd3f5b34948a559daf89646a1295451299257017d64523",
+      "source_sheet_width": 1536,
+      "source_sheet_height": 1024,
+      "slot_index": 4,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        0,
+        512,
+        392,
+        1024
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 392,
+        "source_cell_height": 512,
+        "crop_box": [
+          96,
+          36,
+          392,
+          228
+        ],
+        "removed_background_pixels": 186089,
+        "removed_background_fraction": 0.927181,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": true,
+        "enclosed_checker_components_removed": 1,
+        "enclosed_checker_pixels_removed": 14261
+      }
+    },
+    {
+      "asset_id": "CIV_TOWN_HALL",
+      "label": "Town hall",
+      "category": "buildings",
+      "repository_file": "public/assets/p0/buildings/civ_town_hall.png",
+      "public_file": "/assets/p0/buildings/civ_town_hall.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "a1252a34071da257c20d575b2a7c5dba7a5255f6535f278d6fad4e14e9685ef8",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "buildings-supplement.png",
+      "source_sheet_sha256": "bc928542aa205271e2952d9435274fd9cfca8d3c4bc45b1f997879138b2562cc",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 0,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        0,
+        0,
+        444,
+        444
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 444,
+        "source_cell_height": 444,
+        "crop_box": [
+          99,
+          43,
+          421,
+          428
+        ],
+        "removed_background_pixels": 137417,
+        "removed_background_fraction": 0.697067,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "STATION_LOCAL__ORIENT_NE_SW",
+      "label": "Station",
+      "category": "buildings",
+      "repository_file": "public/assets/p0/buildings/station_local__orient_ne_sw.png",
+      "public_file": "/assets/p0/buildings/station_local__orient_ne_sw.png",
+      "width": 128,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "190e9e87e433eca6cf88cb92aa2a0af0033a97ac3ef8d7b0873c59cb3c63026d",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "v2.2_pack_individual",
+      "source_path": "assets/individual/terrain/station_platform.png",
+      "source_sha256": "7719f3d9da763ddce5dfd2315ea8d03be04469389018ab9c4c1df18891819a69",
+      "source_width": 128,
+      "source_height": 96,
+      "slot_index": 0,
+      "normalization": "alpha-trim, nearest-neighbor scale, anchor alignment"
+    },
+    {
+      "asset_id": "RES_GARDEN_HOME",
+      "label": "Residence — garden home",
+      "category": "buildings",
+      "repository_file": "public/assets/p0/buildings/res_garden_home.png",
+      "public_file": "/assets/p0/buildings/res_garden_home.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "769cac203a51a81ef3f9910c46263ba93c06f28dc30aa3e499fe64b1b2e8e962",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "v2.2_pack_individual",
+      "source_path": "assets/individual/buildings/residence_garden_home.png",
+      "source_sha256": "bacef38496228fec05c75906ac95653a414d62fd75fb07a90385df47be7c07e4",
+      "source_width": 128,
+      "source_height": 128,
+      "slot_index": 0,
+      "normalization": "alpha-trim, nearest-neighbor scale, anchor alignment"
+    },
+    {
+      "asset_id": "RES_ROW_HOUSE",
+      "label": "Residence — row house",
+      "category": "buildings",
+      "repository_file": "public/assets/p0/buildings/res_row_house.png",
+      "public_file": "/assets/p0/buildings/res_row_house.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "7c1bf493eb538161b5ef5bbb877aee28b6ea71a0c8c658f6fa282e3379b5c6aa",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "v2.2_pack_individual",
+      "source_path": "assets/individual/buildings/residence_row_house.png",
+      "source_sha256": "e9e5254483d84b53db1e22714382ec05191dc8e0201dde800f7757472e13019b",
+      "source_width": 128,
+      "source_height": 128,
+      "slot_index": 0,
+      "normalization": "alpha-trim, nearest-neighbor scale, anchor alignment"
+    },
+    {
+      "asset_id": "COM_MARKET_HALL",
+      "label": "Commercial",
+      "category": "buildings",
+      "repository_file": "public/assets/p0/buildings/com_market_hall.png",
+      "public_file": "/assets/p0/buildings/com_market_hall.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "749130f099e8305e5f73c2e10bdd67a0d83af87194b86fa5ef67870be19a4271",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "v2.2_pack_individual",
+      "source_path": "assets/individual/buildings/commercial_market_hall.png",
+      "source_sha256": "afb5e60cb7c81bfc8b31c6bf01209f68cfa9fd35ede04b8fd0018be429ad5ccd",
+      "source_width": 128,
+      "source_height": 128,
+      "slot_index": 0,
+      "normalization": "alpha-trim, nearest-neighbor scale, anchor alignment"
+    },
+    {
+      "asset_id": "IND_WORKSHOP",
+      "label": "Industrial / workshop",
+      "category": "buildings",
+      "repository_file": "public/assets/p0/buildings/ind_workshop.png",
+      "public_file": "/assets/p0/buildings/ind_workshop.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "5c30d1f06824d8bd17e189757f918beca120138057c22504aabd11d11e3a79c9",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "v2.2_pack_individual",
+      "source_path": "assets/individual/buildings/industrial_workshop.png",
+      "source_sha256": "e1ecb66709f803d221c742275711ab0728cafbdf56234e2962868c74acdcc33b",
+      "source_width": 128,
+      "source_height": 128,
+      "slot_index": 0,
+      "normalization": "alpha-trim, nearest-neighbor scale, anchor alignment"
+    },
+    {
+      "asset_id": "CIV_HOSPITAL",
+      "label": "Hospital",
+      "category": "buildings",
+      "repository_file": "public/assets/p0/buildings/civ_hospital.png",
+      "public_file": "/assets/p0/buildings/civ_hospital.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "22364d8b8edec28c979dc6bf40827c1f17b252c936a34de20c4fd0dc3915ad96",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "buildings-supplement.png",
+      "source_sheet_sha256": "bc928542aa205271e2952d9435274fd9cfca8d3c4bc45b1f997879138b2562cc",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 1,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        444,
+        0,
+        887,
+        444
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 443,
+        "source_cell_height": 444,
+        "crop_box": [
+          62,
+          104,
+          388,
+          438
+        ],
+        "removed_background_pixels": 128590,
+        "removed_background_fraction": 0.653763,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "CIV_SCHOOL",
+      "label": "School",
+      "category": "buildings",
+      "repository_file": "public/assets/p0/buildings/civ_school.png",
+      "public_file": "/assets/p0/buildings/civ_school.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "1c3c925e65c23eaff9341f9e44f9633a42869c79d7165018b53329125a6035d7",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "v2.2_pack_individual",
+      "source_path": "assets/individual/buildings/civic_school.png",
+      "source_sha256": "e9833d01cc720876efd00798691daee09c1aaefaad63f760f6928ce2127e3348",
+      "source_width": 128,
+      "source_height": 128,
+      "slot_index": 0,
+      "normalization": "alpha-trim, nearest-neighbor scale, anchor alignment"
+    },
+    {
+      "asset_id": "UTIL_SUBSTATION",
+      "label": "Power substation",
+      "category": "buildings",
+      "repository_file": "public/assets/p0/buildings/util_substation.png",
+      "public_file": "/assets/p0/buildings/util_substation.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "d9c39581e213def9255fb58bacf24f27cf964d859267ccddf290326b5186acb6",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "buildings-supplement.png",
+      "source_sheet_sha256": "bc928542aa205271e2952d9435274fd9cfca8d3c4bc45b1f997879138b2562cc",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 2,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        887,
+        0,
+        1330,
+        444
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 443,
+        "source_cell_height": 444,
+        "crop_box": [
+          26,
+          97,
+          354,
+          431
+        ],
+        "removed_background_pixels": 134270,
+        "removed_background_fraction": 0.682641,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "DEF_EMERGENCY_DEPOT",
+      "label": "Response depot",
+      "category": "buildings",
+      "repository_file": "public/assets/p0/buildings/def_emergency_depot.png",
+      "public_file": "/assets/p0/buildings/def_emergency_depot.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "d0fa992952b24f524c2c24797b30bf50a565c8787f0a28dcb729cb6c8728e448",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "buildings-supplement.png",
+      "source_sheet_sha256": "bc928542aa205271e2952d9435274fd9cfca8d3c4bc45b1f997879138b2562cc",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 3,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        1330,
+        0,
+        1774,
+        444
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 444,
+        "source_cell_height": 444,
+        "crop_box": [
+          7,
+          138,
+          346,
+          431
+        ],
+        "removed_background_pixels": 136307,
+        "removed_background_fraction": 0.691436,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "DEF_EVAC_SHELTER",
+      "label": "Shelter",
+      "category": "buildings",
+      "repository_file": "public/assets/p0/buildings/def_evac_shelter.png",
+      "public_file": "/assets/p0/buildings/def_evac_shelter.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "062eb9fc2428f76852f9351833169ba4cef77b6ce256587a30726c5124d1663c",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "v2.2_pack_individual",
+      "source_path": "assets/individual/defense_facilities/defense_evacuation_shelter.png",
+      "source_sha256": "6eec38f9564e38f83842856183d5d8e9d07037f93685bbc69409aaf1232cb438",
+      "source_width": 128,
+      "source_height": 128,
+      "slot_index": 0,
+      "normalization": "alpha-trim, nearest-neighbor scale, anchor alignment"
+    },
+    {
+      "asset_id": "DEF_SENSOR_MAST",
+      "label": "Sensor tower",
+      "category": "buildings",
+      "repository_file": "public/assets/p0/buildings/def_sensor_mast.png",
+      "public_file": "/assets/p0/buildings/def_sensor_mast.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "45b9df2c47534c15769918c8aa47f44faca221e91a338f65faffadc1a4f1b293",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "buildings-supplement.png",
+      "source_sheet_sha256": "bc928542aa205271e2952d9435274fd9cfca8d3c4bc45b1f997879138b2562cc",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 4,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        0,
+        444,
+        444,
+        887
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 444,
+        "source_cell_height": 443,
+        "crop_box": [
+          130,
+          11,
+          408,
+          387
+        ],
+        "removed_background_pixels": 150576,
+        "removed_background_fraction": 0.765542,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "DEF_DRONE_PAD",
+      "label": "Drone pad",
+      "category": "buildings",
+      "repository_file": "public/assets/p0/buildings/def_drone_pad.png",
+      "public_file": "/assets/p0/buildings/def_drone_pad.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "6c1bb50642bff942db35688da21d67b85d5f99b65b3f5ff20d64de1021ceb830",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "buildings-supplement.png",
+      "source_sheet_sha256": "bc928542aa205271e2952d9435274fd9cfca8d3c4bc45b1f997879138b2562cc",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 5,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        444,
+        444,
+        887,
+        887
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 443,
+        "source_cell_height": 443,
+        "crop_box": [
+          46,
+          136,
+          404,
+          394
+        ],
+        "removed_background_pixels": 142870,
+        "removed_background_fraction": 0.728004,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "DEF_AVALANCHE_BARRIER",
+      "label": "Slope barrier",
+      "category": "buildings",
+      "repository_file": "public/assets/p0/buildings/def_avalanche_barrier.png",
+      "public_file": "/assets/p0/buildings/def_avalanche_barrier.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "33f4ec4b5f3e106dc246517f14ce2eb79fcc9187e6bd0f4375ef74e234f9567a",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "buildings-supplement.png",
+      "source_sheet_sha256": "bc928542aa205271e2952d9435274fd9cfca8d3c4bc45b1f997879138b2562cc",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 6,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        887,
+        444,
+        1330,
+        887
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 443,
+        "source_cell_height": 443,
+        "crop_box": [
+          36,
+          71,
+          362,
+          395
+        ],
+        "removed_background_pixels": 138080,
+        "removed_background_fraction": 0.703596,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "UNIT_RAPID_RESPONSE__FACING_NE",
+      "label": "Response carrier NE",
+      "category": "units",
+      "repository_file": "public/assets/p0/units/unit_rapid_response__facing_ne.png",
+      "public_file": "/assets/p0/units/unit_rapid_response__facing_ne.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "26de59310fd5c4dd1a8b9259df1d573d3c375e8d91cfe1f1ef429b61d326d232",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "units-supplement-v2.png",
+      "source_sheet_sha256": "215da1e2ec893a1423f5295abba5caecb8ba983be2256fec796cb9e9a2417155",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 0,
+      "grid": {
+        "columns": 4,
+        "rows": 1
+      },
+      "adaptive_cell_box": [
+        0,
+        0,
+        444,
+        887
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 444,
+        "source_cell_height": 887,
+        "crop_box": [
+          55,
+          279,
+          444,
+          593
+        ],
+        "removed_background_pixels": 320926,
+        "removed_background_fraction": 0.814889,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "UNIT_RAPID_RESPONSE__FACING_SE",
+      "label": "Response carrier SE",
+      "category": "units",
+      "repository_file": "public/assets/p0/units/unit_rapid_response__facing_se.png",
+      "public_file": "/assets/p0/units/unit_rapid_response__facing_se.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "6f833bc093154f9ffff3bcca21f6e496223b0f42fc883cf1fe65c4f73e47a953",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "units-supplement-v2.png",
+      "source_sheet_sha256": "215da1e2ec893a1423f5295abba5caecb8ba983be2256fec796cb9e9a2417155",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 1,
+      "grid": {
+        "columns": 4,
+        "rows": 1
+      },
+      "adaptive_cell_box": [
+        444,
+        0,
+        887,
+        887
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 443,
+        "source_cell_height": 887,
+        "crop_box": [
+          49,
+          292,
+          399,
+          615
+        ],
+        "removed_background_pixels": 329066,
+        "removed_background_fraction": 0.837444,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "UNIT_EVAC_BUS__FACING_NE",
+      "label": "Evacuation carrier NE",
+      "category": "units",
+      "repository_file": "public/assets/p0/units/unit_evac_bus__facing_ne.png",
+      "public_file": "/assets/p0/units/unit_evac_bus__facing_ne.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "56deb0eacd9d348d48bb715b844af1e94955d3c5637ec771c2ab6a3bab267f33",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "units-supplement-v2.png",
+      "source_sheet_sha256": "215da1e2ec893a1423f5295abba5caecb8ba983be2256fec796cb9e9a2417155",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 2,
+      "grid": {
+        "columns": 4,
+        "rows": 1
+      },
+      "adaptive_cell_box": [
+        887,
+        0,
+        1330,
+        887
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 443,
+        "source_cell_height": 887,
+        "crop_box": [
+          6,
+          294,
+          396,
+          601
+        ],
+        "removed_background_pixels": 323654,
+        "removed_background_fraction": 0.823671,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "UNIT_EVAC_BUS__FACING_SE",
+      "label": "Evacuation carrier SE",
+      "category": "units",
+      "repository_file": "public/assets/p0/units/unit_evac_bus__facing_se.png",
+      "public_file": "/assets/p0/units/unit_evac_bus__facing_se.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "904d0439922085e3cbb5b5ea4f2fc97e9be8daf7bb9b885c64355d51baa3630c",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "units-supplement-v2.png",
+      "source_sheet_sha256": "215da1e2ec893a1423f5295abba5caecb8ba983be2256fec796cb9e9a2417155",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 3,
+      "grid": {
+        "columns": 4,
+        "rows": 1
+      },
+      "adaptive_cell_box": [
+        1330,
+        0,
+        1774,
+        887
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 444,
+        "source_cell_height": 887,
+        "crop_box": [
+          15,
+          295,
+          378,
+          616
+        ],
+        "removed_background_pixels": 327345,
+        "removed_background_fraction": 0.831188,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "UNIT_RECON_DRONE",
+      "label": "Reconnaissance drone",
+      "category": "units",
+      "repository_file": "public/assets/p0/units/unit_recon_drone.png",
+      "public_file": "/assets/p0/units/unit_recon_drone.png",
+      "width": 128,
+      "height": 128,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "6862ae3a806c489c5ec2e2e9d69c22d3670c76d6d84de3400f1627b4f4f3637a",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "visual-gate-replacements.png",
+      "source_sheet_sha256": "23d5397aef0d063517bc6b1f514bbf16ace08dd5b58504d386d708831753bfb4",
+      "source_sheet_width": 1536,
+      "source_sheet_height": 1024,
+      "slot_index": 0,
+      "grid": {
+        "columns": 3,
+        "rows": 1
+      },
+      "adaptive_cell_box": [
+        0,
+        0,
+        527,
+        1024
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 527,
+        "source_cell_height": 1024,
+        "crop_box": [
+          55,
+          340,
+          527,
+          670
+        ],
+        "removed_background_pixels": 471626,
+        "removed_background_fraction": 0.873951,
+        "background_mode": "flat_chroma_magenta",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "CRISIS_SUBSTATION_ARC_FIRE__FX_F01_TELEGRAPH",
+      "label": "Substation warning",
+      "category": "crisis",
+      "repository_file": "public/assets/p0/crisis/crisis_substation_arc_fire__fx_f01_telegraph.png",
+      "public_file": "/assets/p0/crisis/crisis_substation_arc_fire__fx_f01_telegraph.png",
+      "width": 96,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "1bf21bfbee9841970e95081861c76500cae0ad60559d63b76f686b2d68ccf0fe",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "crisis-supplement.png",
+      "source_sheet_sha256": "b7264cd575767e51333f79f9ce6f053f1ea657704439a0f5734a375e83bfaa64",
+      "source_sheet_width": 1536,
+      "source_sheet_height": 1024,
+      "slot_index": 0,
+      "grid": {
+        "columns": 3,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        0,
+        0,
+        512,
+        519
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 512,
+        "source_cell_height": 519,
+        "crop_box": [
+          127,
+          140,
+          449,
+          519
+        ],
+        "removed_background_pixels": 199249,
+        "removed_background_fraction": 0.749823,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "CRISIS_SUBSTATION_ARC_FIRE__FX_F04_PEAK",
+      "label": "Arc fire",
+      "category": "crisis",
+      "repository_file": "public/assets/p0/crisis/crisis_substation_arc_fire__fx_f04_peak.png",
+      "public_file": "/assets/p0/crisis/crisis_substation_arc_fire__fx_f04_peak.png",
+      "width": 96,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "45870eff3eab371e8d153a37fec487a18478a5b306ccb279ef86b0c9c585df3b",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "crisis-supplement.png",
+      "source_sheet_sha256": "b7264cd575767e51333f79f9ce6f053f1ea657704439a0f5734a375e83bfaa64",
+      "source_sheet_width": 1536,
+      "source_sheet_height": 1024,
+      "slot_index": 1,
+      "grid": {
+        "columns": 3,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        512,
+        0,
+        1024,
+        519
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 512,
+        "source_cell_height": 519,
+        "crop_box": [
+          77,
+          46,
+          425,
+          519
+        ],
+        "removed_background_pixels": 167315,
+        "removed_background_fraction": 0.629648,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "CRISIS_SUBSTATION_ARC_FIRE__FX_F06_AFTERMATH",
+      "label": "Extinguished aftermath",
+      "category": "crisis",
+      "repository_file": "public/assets/p0/crisis/crisis_substation_arc_fire__fx_f06_aftermath.png",
+      "public_file": "/assets/p0/crisis/crisis_substation_arc_fire__fx_f06_aftermath.png",
+      "width": 96,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "06ca8bc73968c4f59f94ce4657156d0cd820b9bf4103f5574099b5febb577d63",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "crisis-supplement.png",
+      "source_sheet_sha256": "b7264cd575767e51333f79f9ce6f053f1ea657704439a0f5734a375e83bfaa64",
+      "source_sheet_width": 1536,
+      "source_sheet_height": 1024,
+      "slot_index": 2,
+      "grid": {
+        "columns": 3,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        1024,
+        0,
+        1536,
+        519
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 512,
+        "source_cell_height": 519,
+        "crop_box": [
+          49,
+          155,
+          389,
+          519
+        ],
+        "removed_background_pixels": 204725,
+        "removed_background_fraction": 0.770431,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "CRISIS_AVALANCHE__FX_F01_TELEGRAPH",
+      "label": "Avalanche precursor",
+      "category": "crisis",
+      "repository_file": "public/assets/p0/crisis/crisis_avalanche__fx_f01_telegraph.png",
+      "public_file": "/assets/p0/crisis/crisis_avalanche__fx_f01_telegraph.png",
+      "width": 96,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "c6b859067c28aca9e6839eacef19cb64499ec826221b6e9c427840eaf9f9c464",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "crisis-supplement.png",
+      "source_sheet_sha256": "b7264cd575767e51333f79f9ce6f053f1ea657704439a0f5734a375e83bfaa64",
+      "source_sheet_width": 1536,
+      "source_sheet_height": 1024,
+      "slot_index": 3,
+      "grid": {
+        "columns": 3,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        0,
+        519,
+        512,
+        1024
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 512,
+        "source_cell_height": 505,
+        "crop_box": [
+          49,
+          61,
+          473,
+          413
+        ],
+        "removed_background_pixels": 165781,
+        "removed_background_fraction": 0.64117,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "CRISIS_AVALANCHE__FX_F04_PEAK",
+      "label": "Active avalanche",
+      "category": "crisis",
+      "repository_file": "public/assets/p0/crisis/crisis_avalanche__fx_f04_peak.png",
+      "public_file": "/assets/p0/crisis/crisis_avalanche__fx_f04_peak.png",
+      "width": 96,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "5f329d5d73cc31bfa2f4a0b2c05762de2c4393c445f691a0f2bfa0fae3fa09f8",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "crisis-supplement.png",
+      "source_sheet_sha256": "b7264cd575767e51333f79f9ce6f053f1ea657704439a0f5734a375e83bfaa64",
+      "source_sheet_width": 1536,
+      "source_sheet_height": 1024,
+      "slot_index": 4,
+      "grid": {
+        "columns": 3,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        512,
+        519,
+        1024,
+        1024
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 512,
+        "source_cell_height": 505,
+        "crop_box": [
+          26,
+          45,
+          470,
+          431
+        ],
+        "removed_background_pixels": 152818,
+        "removed_background_fraction": 0.591035,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "CRISIS_AVALANCHE__FX_F06_AFTERMATH",
+      "label": "Avalanche aftermath",
+      "category": "crisis",
+      "repository_file": "public/assets/p0/crisis/crisis_avalanche__fx_f06_aftermath.png",
+      "public_file": "/assets/p0/crisis/crisis_avalanche__fx_f06_aftermath.png",
+      "width": 96,
+      "height": 96,
+      "anchor_x": 0.5,
+      "anchor_y": 1.0,
+      "final_sha256": "7a084a320949ef5de6a8949642a9c3f1825e6bd6e41c037bed4bb679c5650885",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "crisis-supplement.png",
+      "source_sheet_sha256": "b7264cd575767e51333f79f9ce6f053f1ea657704439a0f5734a375e83bfaa64",
+      "source_sheet_width": 1536,
+      "source_sheet_height": 1024,
+      "slot_index": 5,
+      "grid": {
+        "columns": 3,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        1024,
+        519,
+        1536,
+        1024
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 512,
+        "source_cell_height": 505,
+        "crop_box": [
+          41,
+          195,
+          449,
+          429
+        ],
+        "removed_background_pixels": 202026,
+        "removed_background_fraction": 0.781351,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "STAMP_DANGER",
+      "label": "Danger",
+      "category": "signals",
+      "repository_file": "public/assets/p0/signals/stamp_danger.png",
+      "public_file": "/assets/p0/signals/stamp_danger.png",
+      "width": 64,
+      "height": 64,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "11905dcc4af5efceb002560dd165f8eedca8a6638ce4223c176d745eaf9bcb2b",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "v2.2_pack_individual",
+      "source_path": "assets/individual/stamps/stamp_danger.png",
+      "source_sha256": "879b8139d0d4951851d26ee75a6e88b18ea7a0ddf592464f1361b57fdd85a040",
+      "source_width": 64,
+      "source_height": 64,
+      "slot_index": 0,
+      "normalization": "alpha-trim, nearest-neighbor scale, anchor alignment"
+    },
+    {
+      "asset_id": "CRISIS_AVALANCHE__ICON",
+      "label": "Avalanche risk",
+      "category": "signals",
+      "repository_file": "public/assets/p0/signals/crisis_avalanche__icon.png",
+      "public_file": "/assets/p0/signals/crisis_avalanche__icon.png",
+      "width": 64,
+      "height": 64,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "45ce98ac54fe5dd9bd7fc635d47dcae726ff64d9468f4f8163bf4dc71ca9e562",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "signals-supplement.png",
+      "source_sheet_sha256": "cb21b7f38348eb9295481e8c72c18f41e145c2efef4ff39c0d3d6541d107d5a4",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 0,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        0,
+        0,
+        444,
+        444
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 444,
+        "source_cell_height": 444,
+        "crop_box": [
+          144,
+          149,
+          415,
+          385
+        ],
+        "removed_background_pixels": 161200,
+        "removed_background_fraction": 0.81771,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "REL_ICON_REL_REQUESTS_ACTION_FROM",
+      "label": "Action requested",
+      "category": "signals",
+      "repository_file": "public/assets/p0/signals/rel_icon_rel_requests_action_from.png",
+      "public_file": "/assets/p0/signals/rel_icon_rel_requests_action_from.png",
+      "width": 64,
+      "height": 64,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "cd1a3b8fa69b9d75d42688444f569b082d3db0720259e8dad2903e0e709bab04",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "signals-supplement.png",
+      "source_sheet_sha256": "cb21b7f38348eb9295481e8c72c18f41e145c2efef4ff39c0d3d6541d107d5a4",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 1,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        444,
+        0,
+        887,
+        444
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 443,
+        "source_cell_height": 444,
+        "crop_box": [
+          114,
+          133,
+          374,
+          381
+        ],
+        "removed_background_pixels": 168494,
+        "removed_background_fraction": 0.856639,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "STAMP_ACKNOWLEDGE",
+      "label": "Acknowledged",
+      "category": "signals",
+      "repository_file": "public/assets/p0/signals/stamp_acknowledge.png",
+      "public_file": "/assets/p0/signals/stamp_acknowledge.png",
+      "width": 64,
+      "height": 64,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "d2e53e3de4d77e8a32a28d2bdaa5cfa9f1d0b44a649939c9359196a64c6d6e3b",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "v2.2_pack_individual",
+      "source_path": "assets/individual/stamps/stamp_acknowledge.png",
+      "source_sha256": "d614f00a8095746e621e8795bd403ecf3bc50e923b9b6569c620967b10ab5e97",
+      "source_width": 64,
+      "source_height": 64,
+      "slot_index": 0,
+      "normalization": "alpha-trim, nearest-neighbor scale, anchor alignment"
+    },
+    {
+      "asset_id": "REL_ICON_REL_RESPONDS_TO",
+      "label": "Responding",
+      "category": "signals",
+      "repository_file": "public/assets/p0/signals/rel_icon_rel_responds_to.png",
+      "public_file": "/assets/p0/signals/rel_icon_rel_responds_to.png",
+      "width": 64,
+      "height": 64,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "daa0782b3caaed70ba86b7bebc489a608cd05967d46876b66d6cbe4f61d3257f",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "signals-supplement.png",
+      "source_sheet_sha256": "cb21b7f38348eb9295481e8c72c18f41e145c2efef4ff39c0d3d6541d107d5a4",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 2,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        887,
+        0,
+        1330,
+        444
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 443,
+        "source_cell_height": 444,
+        "crop_box": [
+          72,
+          133,
+          311,
+          385
+        ],
+        "removed_background_pixels": 172613,
+        "removed_background_fraction": 0.87758,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "STAMP_CONFIRM",
+      "label": "Confirmed",
+      "category": "signals",
+      "repository_file": "public/assets/p0/signals/stamp_confirm.png",
+      "public_file": "/assets/p0/signals/stamp_confirm.png",
+      "width": 64,
+      "height": 64,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "5add54f8881555f436abfac6353f997a410281232747ac2f3d68ee45dcd24611",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "v2.2_pack_individual",
+      "source_path": "assets/individual/stamps/stamp_confirm.png",
+      "source_sha256": "052ffe911783fdd2393e1309e32a4cba72c50c1690105ba77e8747cbb33a56fd",
+      "source_width": 64,
+      "source_height": 64,
+      "slot_index": 0,
+      "normalization": "alpha-trim, nearest-neighbor scale, anchor alignment"
+    },
+    {
+      "asset_id": "STAMP_COMPLETED",
+      "label": "Completed",
+      "category": "signals",
+      "repository_file": "public/assets/p0/signals/stamp_completed.png",
+      "public_file": "/assets/p0/signals/stamp_completed.png",
+      "width": 64,
+      "height": 64,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "089c9a8e7777f208b7ba3966e09e07b7e5b877e1caa2c38a905fcddd36d2c6f5",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "signals-supplement.png",
+      "source_sheet_sha256": "cb21b7f38348eb9295481e8c72c18f41e145c2efef4ff39c0d3d6541d107d5a4",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 3,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        1330,
+        0,
+        1774,
+        444
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 444,
+        "source_cell_height": 444,
+        "crop_box": [
+          28,
+          141,
+          276,
+          385
+        ],
+        "removed_background_pixels": 167471,
+        "removed_background_fraction": 0.84952,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": true,
+        "enclosed_checker_components_removed": 2,
+        "enclosed_checker_pixels_removed": 14745
+      }
+    },
+    {
+      "asset_id": "STAMP_UNCERTAIN",
+      "label": "Uncertain",
+      "category": "signals",
+      "repository_file": "public/assets/p0/signals/stamp_uncertain.png",
+      "public_file": "/assets/p0/signals/stamp_uncertain.png",
+      "width": 64,
+      "height": 64,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "6a4efef4f1f50835615be31ba47e8bfedad510229af602ad83ae282201f2beda",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "v2.2_pack_individual",
+      "source_path": "assets/individual/stamps/stamp_uncertain.png",
+      "source_sha256": "e63f71f01193f3f4a159590a1ae584ca5a144352c2cd7235dcdba8bbf2f191cf",
+      "source_width": 64,
+      "source_height": 64,
+      "slot_index": 0,
+      "normalization": "alpha-trim, nearest-neighbor scale, anchor alignment"
+    },
+    {
+      "asset_id": "UI_BUILD",
+      "label": "Build",
+      "category": "signals",
+      "repository_file": "public/assets/p0/signals/ui_build.png",
+      "public_file": "/assets/p0/signals/ui_build.png",
+      "width": 64,
+      "height": 64,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "0f26b528618689fbaa0c6404c3683e857be850e4a3e556b3a280859baa2ffdee",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "v2.2_pack_individual",
+      "source_path": "assets/individual/ui_icons/ui_building_construction.png",
+      "source_sha256": "8c5da83657a4dc388f816ec25660650a0b4583d377199d66999252a23a012a75",
+      "source_width": 64,
+      "source_height": 64,
+      "slot_index": 0,
+      "normalization": "alpha-trim, nearest-neighbor scale, anchor alignment"
+    },
+    {
+      "asset_id": "UI_DISPATCH",
+      "label": "Dispatch",
+      "category": "signals",
+      "repository_file": "public/assets/p0/signals/ui_dispatch.png",
+      "public_file": "/assets/p0/signals/ui_dispatch.png",
+      "width": 64,
+      "height": 64,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "0c7997b90752acd2fddde7f425de5ca5a5ddc61917d3140422e233b7a9e901d3",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "signals-supplement.png",
+      "source_sheet_sha256": "cb21b7f38348eb9295481e8c72c18f41e145c2efef4ff39c0d3d6541d107d5a4",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 4,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        0,
+        444,
+        448,
+        887
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 448,
+        "source_cell_height": 443,
+        "crop_box": [
+          135,
+          75,
+          448,
+          271
+        ],
+        "removed_background_pixels": 159778,
+        "removed_background_fraction": 0.805073,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "UI_EVACUATE",
+      "label": "Evacuation",
+      "category": "signals",
+      "repository_file": "public/assets/p0/signals/ui_evacuate.png",
+      "public_file": "/assets/p0/signals/ui_evacuate.png",
+      "width": 64,
+      "height": 64,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "f298df69cc47325da71365822133ea4f214a2ee3543b19ffae5c2ca2a9ca260d",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "signals-supplement.png",
+      "source_sheet_sha256": "cb21b7f38348eb9295481e8c72c18f41e145c2efef4ff39c0d3d6541d107d5a4",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 5,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        448,
+        444,
+        887,
+        887
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 439,
+        "source_cell_height": 443,
+        "crop_box": [
+          93,
+          75,
+          378,
+          274
+        ],
+        "removed_background_pixels": 156480,
+        "removed_background_fraction": 0.80462,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "UI_REPLAY",
+      "label": "Replay",
+      "category": "signals",
+      "repository_file": "public/assets/p0/signals/ui_replay.png",
+      "public_file": "/assets/p0/signals/ui_replay.png",
+      "width": 64,
+      "height": 64,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "9f9dc994b8d9d130b8b0bfd32a7f202df03f5ae0fddd3b79cc90f823922df49e",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "signals-supplement.png",
+      "source_sheet_sha256": "cb21b7f38348eb9295481e8c72c18f41e145c2efef4ff39c0d3d6541d107d5a4",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 6,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        887,
+        444,
+        1308,
+        887
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 421,
+        "source_cell_height": 443,
+        "crop_box": [
+          77,
+          58,
+          312,
+          298
+        ],
+        "removed_background_pixels": 157406,
+        "removed_background_fraction": 0.843986,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": true,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "UI_BRANCH",
+      "label": "Branch",
+      "category": "signals",
+      "repository_file": "public/assets/p0/signals/ui_branch.png",
+      "public_file": "/assets/p0/signals/ui_branch.png",
+      "width": 64,
+      "height": 64,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "63f89926feec8405f72ac0c5e110fc39e79fc4c79cf53f2fdb1f0bf0c53a35da",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "visual-gate-replacements.png",
+      "source_sheet_sha256": "23d5397aef0d063517bc6b1f514bbf16ace08dd5b58504d386d708831753bfb4",
+      "source_sheet_width": 1536,
+      "source_sheet_height": 1024,
+      "slot_index": 1,
+      "grid": {
+        "columns": 3,
+        "rows": 1
+      },
+      "adaptive_cell_box": [
+        527,
+        0,
+        1005,
+        1024
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 478,
+        "source_cell_height": 1024,
+        "crop_box": [
+          87,
+          320,
+          401,
+          704
+        ],
+        "removed_background_pixels": 455682,
+        "removed_background_fraction": 0.930966,
+        "background_mode": "flat_chroma_magenta",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    },
+    {
+      "asset_id": "UI_TIMELINE",
+      "label": "Timeline",
+      "category": "signals",
+      "repository_file": "public/assets/p0/signals/ui_timeline.png",
+      "public_file": "/assets/p0/signals/ui_timeline.png",
+      "width": 64,
+      "height": 64,
+      "anchor_x": 0.5,
+      "anchor_y": 0.5,
+      "final_sha256": "46f5aa7371b104dea0058b2b317763771a6c750c480bccc4b546f570f0183191",
+      "selection_status": "P0_REVIEW_ACCEPTED",
+      "qa_status": "PASS",
+      "source_kind": "local_builtin_imagegen_sheet",
+      "source_sheet": "signals-supplement.png",
+      "source_sheet_sha256": "cb21b7f38348eb9295481e8c72c18f41e145c2efef4ff39c0d3d6541d107d5a4",
+      "source_sheet_width": 1774,
+      "source_sheet_height": 887,
+      "slot_index": 7,
+      "grid": {
+        "columns": 4,
+        "rows": 2
+      },
+      "adaptive_cell_box": [
+        1308,
+        444,
+        1774,
+        887
+      ],
+      "normalization": "fixed semantic cell, deterministic generated-matte removal, alpha trim, Lanczos scale, anchor alignment",
+      "extraction": {
+        "source_cell_width": 466,
+        "source_cell_height": 443,
+        "crop_box": [
+          0,
+          147,
+          343,
+          238
+        ],
+        "removed_background_pixels": 186567,
+        "removed_background_fraction": 0.903743,
+        "background_mode": "connected_neutral_checker",
+        "background_threshold": {
+          "neutral_minimum_channel": 218,
+          "neutral_maximum_channel_spread": 24,
+          "magenta_minimum_red_blue": 70,
+          "magenta_maximum_green": 160,
+          "magenta_minimum_dominance": 25,
+          "magenta_maximum_red_blue_delta": 70
+        },
+        "enclosed_checker_removed": false,
+        "enclosed_checker_components_removed": 0,
+        "enclosed_checker_pixels_removed": 0
+      }
+    }
+  ]
+}
