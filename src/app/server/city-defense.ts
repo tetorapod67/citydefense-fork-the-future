@@ -543,17 +543,21 @@ function readCookie(header: string | null, name: string): string | null {
 async function verifyPasswordForSeat(
   seatId: string,
   password: string,
-  saltOrScheme: string,
-  expectedHash: string,
+  salt: string,
+  storedHash: string,
 ): Promise<boolean> {
-  if (!/^[0-9a-f]{64}$/i.test(expectedHash)) return false;
-  const normalizedHash = expectedHash.toLowerCase();
+  const legacyPlannerMatch =
+    seatId === "PLANNER-01" && /^[0-9a-f]{32}$/i.test(salt)
+      ? /^sha256:([0-9a-f]{64})$/.exec(storedHash)
+      : null;
 
-  if (seatId === "PLANNER-01" && saltOrScheme === "sha256") {
-    return constantTimeEqual(await sha256Hex(password), normalizedHash);
+  if (legacyPlannerMatch) {
+    return constantTimeEqual(await sha256Hex(password), legacyPlannerMatch[1]);
   }
 
-  if (!/^[0-9a-f]{32}$/i.test(saltOrScheme)) return false;
+  if (!/^[0-9a-f]{32}$/i.test(salt)) return false;
+  if (!/^[0-9a-f]{64}$/i.test(storedHash)) return false;
+  const normalizedHash = storedHash.toLowerCase();
   const key = await crypto.subtle.importKey(
     "raw",
     new TextEncoder().encode(password),
@@ -565,7 +569,7 @@ async function verifyPasswordForSeat(
     {
       name: "PBKDF2",
       hash: "SHA-256",
-      salt: hexToBytes(saltOrScheme) as BufferSource,
+      salt: hexToBytes(salt) as BufferSource,
       iterations: 120_000,
     },
     key,
