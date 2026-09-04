@@ -547,12 +547,12 @@ async function verifyPasswordForSeat(
   storedHash: string,
 ): Promise<boolean> {
   const legacyPlannerMatch =
-    seatId === "PLANNER-01" && /^[0-9a-f]{32}$/i.test(salt)
+    seatId === "PLANNER-01" && /^[0-9a-f]{32}$/.test(salt)
       ? /^sha256:([0-9a-f]{64})$/.exec(storedHash)
       : null;
 
   if (legacyPlannerMatch) {
-    return constantTimeEqual(await sha256Hex(password), legacyPlannerMatch[1]);
+    return constantTimeEqual(await sha256Hex(`${salt}:${password}`), legacyPlannerMatch[1]);
   }
 
   if (!/^[0-9a-f]{32}$/i.test(salt)) return false;
