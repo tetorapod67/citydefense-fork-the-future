@@ -10,7 +10,7 @@
 - Public asset sources: CityDefense implementation-pack individual sprites and new Codex built-in image-generation outputs only
 - Third-party reference images promoted, transformed, cropped, or redistributed: none
 
-This branch contains only the minimum visual set required for the P0 judging screen. It does not add runtime code, deployment configuration, Devpost material, reference images, source boards, or raw generation sheets.
+This directory contains the minimum visual set required for the P0 judging screen. Runtime code and deployment configuration live elsewhere in this repository; Devpost material, reference images, source boards, and raw generation sheets are not included.
 
 ## Source-priority audit
 

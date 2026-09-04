@@ -74,27 +74,24 @@ const GET_CITY_CONTEXT_SCHEMA = {
 const PLACE_STAMP_SCHEMA = {
   type: "object",
   properties: {
-    request_id: { type: "string", minLength: 12, maxLength: 120 },
-    expected_branch_version: { type: "integer", minimum: 0 },
-    core_stamp_type_id: { type: "string", minLength: 3, maxLength: 120 },
-    modifier_stamp_type_ids: {
-      type: "array",
-      maxItems: 3,
-      uniqueItems: true,
-      items: { type: "string", minLength: 3, maxLength: 120 },
+    request_id: {
+      type: "string",
+      minLength: 12,
+      maxLength: 120,
+      pattern: "^[A-Za-z0-9._:-]+$",
     },
+    expected_branch_version: { type: "integer", minimum: 0 },
+    core_stamp_type_id: { type: "string", enum: ["STAMP_CONFIRM"] },
     target_refs: {
       type: "array",
       minItems: 1,
-      maxItems: 4,
+      maxItems: 1,
       uniqueItems: true,
-      items: { type: "string", minLength: 3, maxLength: 160 },
+      items: { type: "string", enum: ["district:CENTRAL_WARD"] },
     },
-    scope: { type: "string", enum: ["BRANCH_PUBLIC", "SEAT_PRIVATE"] },
+    scope: { type: "string", enum: ["BRANCH_PUBLIC"] },
     urgency: { type: "string", enum: ["LOW", "NORMAL", "HIGH", "CRITICAL"] },
     confidence: { type: "string", enum: ["LOW", "MEDIUM", "HIGH"] },
-    reply_to_stamp_id: { type: "string", maxLength: 120 },
-    expires_after_ticks: { type: "integer", minimum: 0, maximum: 200 },
   },
   required: [
     "request_id",

@@ -140,4 +140,4 @@ See [Asset provenance](docs/ASSET_PROVENANCE_P0.md) and [Security notes](docs/SE
 
 ## License
 
-Code and Owner-authorized repository content are released under the [MIT License](LICENSE).
+Project code is released under the [MIT License](LICENSE). Asset sources and handling are documented in [Asset provenance](docs/ASSET_PROVENANCE_P0.md), including the declared implementation-pack license note.
