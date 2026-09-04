@@ -1,106 +1,116 @@
 # CityDefense: Fork the Future
 
-**A bounded WebMCP city-defense proof with server-backed state.**
+**A WebMCP city-defense prototype where temporary agent threads act on durable, human-visible application state.**
 
-CityDefense is a crisis-management city-builder prototype centered on safe, visible agent delegation. This public release documents the verified Gate 1 Core Proof. Replay, branch creation, fresh-thread handoff, and the broader crisis catalog are not live runtime claims.
+> **The chat is temporary. The city remembers.**
 
-- **Public deployment:** https://citydefense-fork-the-future.suguri-a.chatgpt.site
-- **Source:** public in this repository
-- **License:** [MIT](LICENSE)
-- **Release mode:** `CORE_PROOF_RELEASE`
+[Open the live demo](https://citydefense-fork-the-future.suguri-a.chatgpt.site) · [MIT License](LICENSE)
 
-This source integration does not deploy or mutate production. The release is ready for the existing ChatGPT Sites deployment route once that route is separately verified.
+## What CityDefense demonstrates
 
-## Verified Core Proof
+CityDefense explores a practical problem in human–agent collaboration: an AI chat may be temporary, but the work it performs belongs to a long-lived web application.
 
-The Codex In-app Browser host proof is complete for the following bounded flow:
+The submission build demonstrates a focused end-to-end WebMCP flow:
 
-- exactly two WebMCP tools: `get_city_context` and `place_stamp_bundle`
-- the read tool was invoked
-- exactly one authorized Gate 1 write was invoked during the proof
-- the page visibly updated after the write
-- `BRANCH-MAIN` advanced from v0 to v1
-- the result was persisted in server-backed Cloudflare D1
-- a normal reload restored the same branch version, stamp, and activity state
-- the implementation source is public and MIT-licensed
-
-The native **Recently used** surface was not observed, so this release makes no claim that it was. Remote CI is not configured, and no remote-CI pass is claimed.
+- an authenticated agent reads the same live city branch the human is viewing;
+- the page exposes typed, schema-validated Site Tools instead of requiring pixel-driven navigation;
+- a bounded agent action visibly updates the normal web interface;
+- the server issues stable event and stamp identifiers;
+- the result is stored in Cloudflare D1;
+- a normal reload restores the same state.
 
 ## Why WebMCP
 
-Pixel-driven automation has to infer meaning from layout and click targets. WebMCP lets the page expose a small set of semantically named, schema-validated operations instead. The agent can request the authenticated city context or submit one tightly constrained command while the server remains the authority for identity, role, branch, version, and persistence.
+A visual interface is designed for people. An agent using only screenshots must infer which object, button, or state a visual element represents.
 
-The result is a clearer contract: the agent knows which inputs are accepted, the human can see the same state in the normal page, and the server rejects actions outside the Gate 1 boundary.
+WebMCP gives the page a semantic interface. CityDefense exposes stable city identifiers, explicit input schemas, and compact structured results while keeping the normal human interface visible and authoritative.
 
-## UX improvement
+The agent and the human therefore work against the same authenticated Seat, Branch, server rules, and persistent state.
 
-Humans keep the familiar authenticated `/play` surface. They can see the active Seat, Branch, Branch Version, Site Tools state, Central Ward, confirmation stamps, and public activity. An accepted tool call refreshes that visible state; a normal reload proves that the update came from D1 rather than transient client state.
+## Live Site Tools
 
-Agents no longer need to navigate the visual map to understand or update the proof state. They receive structured results with stable IDs and can use optimistic versioning and request idempotency without hiding the outcome from the person watching the page.
+| Tool | Purpose | State change |
+| --- | --- | --- |
+| `get_city_context` | Reads the authenticated Seat, active Branch Version, Central Ward state, and recent activity. | No |
+| `place_stamp_bundle` | Places one schema-constrained `STAMP_CONFIRM` on `district:CENTRAL_WARD` using an expected Branch Version and idempotency request ID. | Yes |
 
-## What humans and agents can do
+Both tools are registered from the authenticated top-level `/play` page with `document.modelContext.registerTool(...)`. No iframe is used.
 
-Humans can:
+## Verified WebMCP flow
 
-- authenticate a disposable demo Seat through `/login`
-- inspect the active Seat, role, branch, version, Central Ward state, stamp IDs, event IDs, and activity
-- refresh or normally reload the page to confirm persistence
-- observe whether Site Tools registration is `READY`
+The flow was exercised in the Codex in-app browser:
 
-Agents can:
+1. the host discovered exactly `get_city_context` and `place_stamp_bundle`;
+2. `get_city_context` read `BRANCH-MAIN` without mutation;
+3. one authorized `place_stamp_bundle` call created a visible confirmation stamp and activity entry;
+4. the Branch advanced from `v0` to `v1`;
+5. the server returned stable Stamp and Event IDs with `persisted=true`;
+6. a normal reload restored the same D1-backed state.
 
-- call `get_city_context` to read the authenticated Seat, active Branch Version, Central Ward confirmation state, and recent public activity without changing state
-- call `place_stamp_bundle` with the current Branch Version and a request ID to request one canonical `STAMP_CONFIRM` on `district:CENTRAL_WARD` with `BRANCH_PUBLIC` scope
+Detailed proof notes are available in [Verified WebMCP Proof](docs/VERIFIED_WEBMCP_PROOF.md).
 
-Both tools are registered for an authenticated page. Write authority is not inferred from visibility: the server permits the Gate 1 write only for `PLANNER-01`. The completed host proof executed exactly one write; the runtime does not impose a permanent one-write-total limit on future valid local requests.
+## Try the live demo
 
-## Implementation
+Judge credentials are supplied privately in the Devpost testing instructions.
 
-`src/app/play/city-defense-client.tsx` reads the top-level `document.modelContext` and invokes `modelContext.registerTool(...)` exactly twice. This is the `document.modelContext.registerTool` integration point. No iframe is used.
+1. Open the [live site](https://citydefense-fork-the-future.suguri-a.chatgpt.site) in the ChatGPT or Codex in-app browser.
+2. Sign in once with the supplied `DEMO-CITY` / `PLANNER-01` credentials.
+3. If the browser does not transition automatically, wait briefly and open `/play` in the same tab.
+4. Confirm that the page reports `SERVER_BACKED_D1` and Site Tools `READY`.
+5. Call `get_city_context`.
+6. Reload normally and call the read tool again to confirm persistence.
 
-The two tools call same-origin routes:
+The fastest judge path is read-only. The bounded write tool remains registered and server-authorized, but the recorded demo already contains the verified write flow.
 
-- `GET /api/branches/:branchId/context`
-- `POST /api/branches/:branchId/commands/place-stamp-bundle`
+## Architecture
 
-Every request is authenticated again on the server and checked against the active branch. When an `Origin` header is present, the write route rejects it if it does not match the request URL. The route also enforces `PLANNER-01`, the exact target/stamp/scope, a current expected Branch Version, and request idempotency. Accepted events, stamps, version changes, and stored results are written to D1. The client refreshes after tool completion and periodically refreshes while the page remains open.
+```text
+Human UI ───────────────┐
+                       │
+WebMCP Site Tools ─────┼──> Same-origin query / command routes
+                       │                 │
+                       └─────────────────┼──> Authentication
+                                         ├──> Role and Branch authorization
+                                         ├──> Schema validation
+                                         ├──> Optimistic version checks
+                                         ├──> Request idempotency
+                                         └──> Cloudflare D1
+                                                        │
+                                                        └──> Visible UI refresh and reload
+```
 
-The broader definitions under `src/contracts/**` are design contracts and expansion data. They are not additional registered Core Proof tools.
+The server—not the tool description—is the authority for identity, target, branch, version, and persistence.
 
-## Local setup
+## Run locally
 
 Requirements:
 
 - Node.js 22.13.0 or newer
 - npm
 
-Install and initialize the local D1 database:
-
-```text
+```bash
 npm ci --no-audit --no-fund
 npm run db:migrate:local
 ```
 
-No password or verifier is committed. Create a disposable local password between 12 and 160 characters, supply it to the current process as `CITYDEFENSE_SEED_PASSWORD`, and run:
+Create a disposable local password, generate a PBKDF2 verifier, and provide the verifier only through your local environment:
 
-```text
-npm run --silent seed:password-verifier
+```bash
+CITYDEFENSE_SEED_PASSWORD="<your disposable password>" \
+  npm run --silent seed:password-verifier
 ```
 
-Treat the generated verifier as a secret. Supply it only to the local process as `CITYDEFENSE_PLANNER_PASSWORD_VERIFIER`, remove `CITYDEFENSE_SEED_PASSWORD`, and start the app:
+Set the generated value as `CITYDEFENSE_PLANNER_PASSWORD_VERIFIER`, remove the plaintext seed password from the environment, and run:
 
-```text
+```bash
 npm run dev
 ```
 
-Open `/login` and use account `DEMO-CITY`, Seat `PLANNER-01`, and the disposable local password. Do not reuse a personal or production credential.
+Open `/login` with account `DEMO-CITY` and Seat `PLANNER-01`.
 
-## Test commands
+## Test
 
-Run the checked-in validation in this order; the built-route and UI checks inspect `dist`, so the build must come first:
-
-```text
-npm ci --no-audit --no-fund
+```bash
 npm run format:check
 npm run lint
 npm run typecheck
@@ -110,57 +120,24 @@ npm run build
 npm run test:e2e
 npm run test:ui
 npx --no-install drizzle-kit check --config drizzle.config.ts
-npm run db:migrate:local
-npx --no-install wrangler d1 migrations list DB --local --config wrangler.jsonc
 ```
 
-Release qualification also includes a tracked-tree secret/privacy scan, migration/source comparison, direct HTTP checks for every rendered static asset, and real-browser smoke checks at 1366×768 and 1920×1080. Those release checks are local evidence; they are not a substitute claim that remote CI passed.
+## Submission scope and next steps
 
-## Security and limitations
+The submission build focuses on the durable WebMCP coordination layer. The broader CityDefense design extends this foundation with crisis forecasting, persistent Sentinel and Planner roles, structured city signals, semantic replay, owner-controlled branching, transport systems, and a data-driven crisis catalog.
 
-- New and rotated verifier secrets use PBKDF2-SHA256; no password or verifier is committed.
-- A narrow legacy SHA-256 compatibility path accepts only the existing disposable `PLANNER-01` row's exact lowercase 32-hex salt and lowercase `sha256:`-prefixed digest of `salt + ":" + password`, and will be retired after its verifier is rotated.
-- Sessions use a hashed opaque token in an HttpOnly, SameSite=Lax cookie with a two-hour lifetime and `Secure` on HTTPS.
-- Tool requests are authenticated and branch-authorized on the server. Tool visibility alone is never treated as authorization.
-- The Gate 1 write is schema-constrained, rejects a mismatched `Origin` header when present, is Planner-only, is version-checked, and is idempotent by request ID.
-- No production write or deployment is performed by this release integration.
+Those broader systems are documented development directions rather than claims about the current live build.
 
-The following are unsupported or explicitly not claimed as live in this release:
+## Security and assets
 
-- native **Recently used** was observed
-- Tutorial Arc Fire is live
-- Avalanche is live
-- the Sentinel runtime is live
-- Semantic Replay is live
-- Owner Branch creation is live
-- fresh-thread handoff is live
-- forty crises are playable
-- remote CI passed
+- Passwords, verifier values, cookies, and deployment secrets are not committed.
+- Tool calls are authenticated and authorized again on the server.
+- Writes are schema-constrained, version-checked, and idempotent.
+- The repository includes 50 accepted P0 visual assets with machine-readable provenance.
+- No third-party game assets or raw reference boards are committed.
 
-Related names may appear in design contracts, provenance, or expansion data without representing live runtime features.
-
-## Asset provenance
-
-The judged P0 set contains 50 accepted assets with zero missing. It combines 17 reviewed individual sprites from the Owner-provided implementation pack with 33 normalized outputs from built-in image generation. No third-party reference image, raw source board, atlas, or raw generation sheet is committed.
-
-- [Asset provenance](docs/ASSET_PROVENANCE_P0.md)
-- [Asset manifest](public/assets/p0/asset-manifest.json)
-- [Machine-readable provenance](public/assets/p0/provenance.json)
-- [Contact sheet](public/assets/p0/contact-sheet.png)
-
-This release's proof UI uses accepted individual P0 assets, not the contact sheet or QA boards.
-
-## Judge path
-
-The public judge check after the completed proof is intentionally read-only:
-
-1. Open the public deployment and authenticate with disposable judge credentials supplied separately.
-2. On `/play`, confirm the page reports server-backed D1 state and Site Tools readiness with exactly `get_city_context` and `place_stamp_bundle` registered.
-3. Invoke `get_city_context` and confirm `BRANCH-MAIN` is v1 with the existing Central Ward confirmation stamp and matching activity.
-4. Perform a normal reload, invoke the read tool again, and confirm the same Branch Version and stable stamp/event IDs.
-
-Do not perform a second production write for judging. The historical host proof already recorded the single authorized write that advanced v0 to v1 and produced the visible, reload-persistent state. Native **Recently used** is not part of the evidence.
+See [Asset provenance](docs/ASSET_PROVENANCE_P0.md) and [Security notes](docs/SECURITY_NOTES.md).
 
 ## License
 
-Code and Owner-authorized repository content are published under the [MIT License](LICENSE). Asset-specific handling and the declared license note are recorded in [docs/ASSET_PROVENANCE_P0.md](docs/ASSET_PROVENANCE_P0.md).
+Code and Owner-authorized repository content are released under the [MIT License](LICENSE).
