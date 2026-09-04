@@ -119,7 +119,7 @@ Release qualification also includes a tracked-tree secret/privacy scan, migratio
 ## Security and limitations
 
 - New and rotated verifier secrets use PBKDF2-SHA256; no password or verifier is committed.
-- A narrow legacy SHA-256 compatibility path accepts only the existing disposable `PLANNER-01` row's exact 32-hex salt and lowercase `sha256:`-prefixed digest shape, and will be retired after its verifier is rotated.
+- A narrow legacy SHA-256 compatibility path accepts only the existing disposable `PLANNER-01` row's exact lowercase 32-hex salt and lowercase `sha256:`-prefixed digest of `salt + ":" + password`, and will be retired after its verifier is rotated.
 - Sessions use a hashed opaque token in an HttpOnly, SameSite=Lax cookie with a two-hour lifetime and `Secure` on HTTPS.
 - Tool requests are authenticated and branch-authorized on the server. Tool visibility alone is never treated as authorization.
 - The Gate 1 write is schema-constrained, rejects a mismatched `Origin` header when present, is Planner-only, is version-checked, and is idempotent by request ID.
