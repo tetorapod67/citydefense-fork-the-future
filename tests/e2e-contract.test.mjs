@@ -27,6 +27,10 @@ test("registers exactly the two Gate 1 Site Tools", async () => {
   assert.match(source, /additionalProperties:\s*false/g);
   assert.match(source, /readOnlyHint:\s*true/);
   assert.match(source, /readOnlyHint:\s*false/);
+  assert.match(source, /core_stamp_type_id:\s*\{\s*type:\s*"string",\s*enum:\s*\["STAMP_CONFIRM"\]/);
+  assert.match(source, /items:\s*\{\s*type:\s*"string",\s*enum:\s*\["district:CENTRAL_WARD"\]/);
+  assert.match(source, /scope:\s*\{\s*type:\s*"string",\s*enum:\s*\["BRANCH_PUBLIC"\]/);
+  assert.doesNotMatch(source, /SEAT_PRIVATE|modifier_stamp_type_ids|reply_to_stamp_id|expires_after_ticks/);
 });
 
 test("references accepted P0 proof assets without the image optimizer", async () => {
